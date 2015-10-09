@@ -4,7 +4,7 @@ Chelsea, team3, San3
 Arsenal, team4, San4
 Newcastle, team5, San5
 Tottenham, team6, San6
-WestHame, team7, San7
+WestHam, team7, San7
 Swansea, team8, San8
 Norwish, team9, San9
 WestBrom, team10, San10
