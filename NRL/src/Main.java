@@ -2,6 +2,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -16,14 +20,55 @@ public class Main {
 	 */
 
 	private static Team[] listTeam;
+	private static Fixture[] listFixture;
+	private static Fixture[][] listRound;
 
-	public static void main(String[] argas) throws InterruptedException {
+	public static void main(String[] argas) throws InterruptedException, ParseException {
 		int choices;
 		listTeam = new Team[16];
-		readTeam(listTeam);
-		for (Team t : listTeam) {
-			System.out.println(t.getTeamName() + "\t\t" + t.getTeamMascot() + "\t" + t.getHomeGround());
+		listFixture = new Fixture[16];
+		listRound = new Fixture[26][8];
+		// readTeam(listTeam);
+		readFixture(listFixture);
+		loadToRound(listRound, listFixture);
+		
+		//Test show data from listRound
+		
+		for(int i = 0; i < 26; i++ ){
+			System.out.println("ROUND "+ (i + 1) + " :");
+			for(int j = 0; j < 8 ; j++){
+				final DateFormat df1 = new SimpleDateFormat("HH:mm");
+				final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+				String date = df2.format(listRound[i][j].getMatchDate());
+				String time = df1.format(listRound[i][j].getKickoffTime());
+				System.out.println(date + "\t" + listRound[i][j].getHomeTeamName() + "\t" + listRound[i][j].getAwayTeamName() + "\t" +  listRound[i][j].getMatchVenue() + "\t" + time);
+			}
 		}
+		
+		// Test read data from Teams.txt file
+		/*
+		 * for (Team t : listTeam) { System.out.println(t.getTeamName() + "\t\t"
+		 * + t.getTeamMascot() + "\t" + t.getHomeGround()); }
+		 */
+		/*int numberRound = getNumberRounds(listFixture);*/
+		/*int [] rounds = new int [27];
+		rounds[0] = numberRound;
+		for(int j = 1; j < numberRound; j++ ){
+			rounds[j] = j;
+		}
+		int i = 0;
+		for(int j = 1; j < numberRound; j++){
+			
+		}
+		for(; i < listFixture.length; i++){
+			final DateFormat df1 = new SimpleDateFormat("HH:mm");
+			final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+			String date = df2.format(m.getMatchDate());
+			String time = df1.format(m.getKickoffTime());
+			
+		
+		}*/
+
 		do {
 			clearScreen();
 			showMain();
@@ -112,5 +157,66 @@ public class Main {
 		}
 
 	}
+
+	public static void readFixture(Fixture[] fx) throws ParseException {
+
+		try {
+			File f = new File("Resources/Fixtures.txt");
+			Scanner input = new Scanner(new FileInputStream(f));
+			int i = 0;
+			while (input.hasNextLine()) {
+				String line = input.nextLine();
+				System.out.println("+++++++++   " + line + "+++++++++");
+				if (line.trim() != "") {
+					String matchs[] = line.split(",");
+					final DateFormat df1 = new SimpleDateFormat("HH:mm");
+					final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+					int matchNumber = Integer.parseInt(matchs[0]);
+					int roundNumber = Integer.parseInt(matchs[1]);
+					String homeTeamName = matchs[2].toString();
+					String awayTeamName = matchs[3].toString();
+					String venue = matchs[4].toString();
+					String kickoff = matchs[5].toString();
+					Date kickoffTime = df1.parse(kickoff);
+					String date = matchs[6].toString();
+					Date matchDate = df2.parse(date);
+
+					fx[i] = new Fixture(matchNumber, roundNumber, homeTeamName, awayTeamName, venue, kickoffTime,
+							matchDate);
+				}
+				i++;
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	public static int getNumberRounds( Fixture[] fx){
+		int i = 1;
+		for (int j = 0; j < fx.length - 1; j ++){
+			if(fx[j].getRoundNumber() != fx[j+1].getRoundNumber())
+			{
+				i++;
+			}
+		}
+		return i;
+	}
+	
+	public static void loadToRound(Fixture[][] rounds, Fixture[] fx){		
+		for(int j = 0; j < 26 ; j++)
+		{
+			for(int i = 0; i < 8; i++){
+				for(int k = 0; i < fx.length; k++) {
+					if(fx[k].getRoundNumber() == (j +1)){
+						rounds[j][i] = fx[k];
+					}
+				}
+			}
+		}
+		
+	}
+	
+	
 
 }

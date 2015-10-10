@@ -1,16 +1,16 @@
-1, 1, Chelsea, Arsenal, San3, 10:15, 20/03/15
-2, 1, ManChesterUnited, Chicago, San2, 10:15, 20/03/15
-3, 1, Newcastle, Tottenham, San5, 10:15, 20/03/15
-4, 1, WestHam, Swansea, San7, 10:15, 20/03/15
-5, 1, Norwish, WestBrom, San9, 10:15, 20/03/15
-6, 1, Sunderland, Aston, San11, 10:15, 20/03/15
-7, 1, Stoke, Liverpool, San13, 10:15, 20/03/15
-8, 1, Southampton, Everton, San15, 10:15, 20/03/15
-1, 2, Newcastle, WestHam, San5, 8:30, 25/03/15
-2, 2, Norwish, Sunderland, San9, 8:30, 25/03/15
-3, 2, Stoke, Southampton, San15, 8:30, 25/03/15
-4, 2, ManChesterUnited, Arsenal, San4, 8:30, 25/03/15
-5, 2, Swansea, Tottenham, San8, 8:30, 25/03/15
-6, 1, Liverpool, Everton, San14, 8:30, 25/03/15
-7, 1, WestBrom, Aston, San10, 8:30, 25/03/15
-8, 1, Chicago, Chelsea, San1, 8:30, 25/03/15
+1,1,Chelsea,Arsenal,San3,10:15,20/03/15
+2,1,ManChesterUnited,Chicago,San2,10:15,20/03/15
+3,1,Newcastle,Tottenham,San5,10:15,20/03/15
+4,1,WestHam,Swansea,San7,10:15,20/03/15
+5,1,Norwish,WestBrom,San9,10:15,20/03/15
+6,1,Sunderland,Aston,San11,10:15,20/03/15
+7,1,Stoke,Liverpool,San13,10:15,20/03/15
+8,1,Southampton,Everton,San15,10:15,20/03/15
+1,2,Newcastle,WestHam,San5,8:30,25/03/15
+2,2,Norwish,Sunderland,San9,8:30,25/03/15
+3,2,Stoke,Southampton,San15,8:30,25/03/15
+4,2,ManChesterUnited,Arsenal,San4,8:30,25/03/15
+5,2,Swansea,Tottenham,San8,8:30,25/03/15
+6,2,Liverpool,Everton,San14,8:30,25/03/15
+7,2,WestBrom,Aston,San10,8:30,25/03/15
+8,2,Chicago,Chelsea,San1,8:30,25/03/15
