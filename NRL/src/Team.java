@@ -13,6 +13,12 @@ public class Team {
 	private int pointsScoreAgainst;
 	private int totalPoints;
 	
+	public Team( String teamName, String teamMascot, String homeGround){
+		this.teamName = teamName;
+		this.teamMascot = teamMascot;
+		this.homeGround = homeGround;
+	}
+	
 	
 	public String getTeamName() {
 		return teamName;
