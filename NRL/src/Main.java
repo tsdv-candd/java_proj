@@ -35,7 +35,7 @@ public class Main {
 		// Test show data from listRound
 
 		for (int i = 0; i < 2; i++) {
-			System.out.println("ROUND " + (i + 1) + " :");
+			System.out.println("ROUND " + (i + 1) + " Matches ");
 			for (int j = 0; j < 8; j++) {
 				final DateFormat df1 = new SimpleDateFormat("HH:mm");
 				final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
@@ -44,6 +44,7 @@ public class Main {
 				System.out.println(date + "\t" + listRound[i][j].getHomeTeamName() + "\t"
 						+ listRound[i][j].getAwayTeamName() + "\t" + listRound[i][j].getMatchVenue() + "\t" + time);
 			}
+			System.out.println("\n\n");
 		}
 
 		// Test read data from Teams.txt file
@@ -68,7 +69,7 @@ public class Main {
 		 */
 
 		do {
-			clearScreen();
+			// clearScreen();
 			showMain();
 			System.out.println("Please enter your choice: ");
 			Scanner in = new Scanner(System.in);
@@ -135,7 +136,7 @@ public class Main {
 					String name = scanner.next();
 					String mascot = scanner.next();
 					String home = scanner.next();
-					System.out.println(name + "\t" + mascot + "\t" + home);
+					// System.out.println(name + "\t" + mascot + "\t" + home);
 					t[i] = new Team(name, mascot, home);
 				}
 				i++;
@@ -200,7 +201,7 @@ public class Main {
 	}
 
 	public static void loadToRound(Fixture[][] rounds, Fixture[] fx) {
-		for (int j = 0; j < 2; j++) {
+		/*for (int j = 0; j < 2; j++) {
 			int i = 0;
 			for (int k = 0; k < fx.length; k++) {
 				if (fx[k].getRoundNumber() == (j + 1)) {
@@ -208,9 +209,12 @@ public class Main {
 					i++;
 				}
 			}
-
+		}*/
+		
+		for(int k = 0; k < fx.length; k++){
+			rounds[fx[k].getRoundNumber() - 1][fx[k].getMatchNumber() - 1] = fx[k];
+			
 		}
-
 	}
 
 }
