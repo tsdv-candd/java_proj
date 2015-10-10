@@ -19,19 +19,25 @@ public class Main {
 	 * @throws IOException
 	 */
 
+	
+	final static int LIST_TEAMS_SIZE = 16;
+	final static int MATCHS_MAX= 208;
+	final static int MATCHS_PER_ROUND_MAX = 8;
+	final static int ROUNDS_MAX = 26;
 	private static Team[] listTeam;
 	private static Fixture[] listFixture;
 	private static Fixture[][] listRound;
 
 	public static void main(String[] argas) throws InterruptedException, ParseException {
 		int choices;
-		listTeam = new Team[16];
-		listFixture = new Fixture[208];
-		listRound = new Fixture[26][8];
-		readTeam(listTeam);
-		readFixture(listFixture);
-		loadToRound(listRound, listFixture);
-		showAllRounds(listRound);
+		listTeam = new Team[LIST_TEAMS_SIZE];
+		listFixture = new Fixture[MATCHS_MAX];
+		listRound = new Fixture[ROUNDS_MAX][MATCHS_PER_ROUND_MAX];
+		readTeam();
+		readFixture();
+		loadToRound();
+		showAllRounds();
+		showOneRound(3);
 		// Test show data from listRound
 
 		
@@ -111,7 +117,7 @@ public class Main {
 
 	}
 
-	public static void readTeam(Team[] t) {
+	public static void readTeam() {
 
 		try {
 			File f = new File("Resources/Teams.txt");
@@ -126,7 +132,7 @@ public class Main {
 					String mascot = scanner.next();
 					String home = scanner.next();
 					// System.out.println(name + "\t" + mascot + "\t" + home);
-					t[i] = new Team(name, mascot, home);
+					listTeam[i] = new Team(name, mascot, home);
 				}
 				i++;
 			}
@@ -145,7 +151,7 @@ public class Main {
 
 	}
 
-	public static void readFixture(Fixture[] fx) throws ParseException {
+	public static void readFixture() throws ParseException {
 
 		try {
 			File f = new File("Resources/Fixtures1.txt");
@@ -167,7 +173,7 @@ public class Main {
 					String date = matchs[6].toString();
 					Date matchDate = df2.parse(date);
 
-					fx[i] = new Fixture(matchNumber, roundNumber, homeTeamName, awayTeamName, venue, kickoffTime,
+					listFixture[i] = new Fixture(matchNumber, roundNumber, homeTeamName, awayTeamName, venue, kickoffTime,
 							matchDate);
 				}
 				i++;
@@ -189,7 +195,7 @@ public class Main {
 		return i;
 	}
 
-	public static void loadToRound(Fixture[][] rounds, Fixture[] fx) {
+	public static void loadToRound() {
 		/*for (int j = 0; j < 2; j++) {
 			int i = 0;
 			for (int k = 0; k < fx.length; k++) {
@@ -200,32 +206,40 @@ public class Main {
 			}
 		}*/
 		
-		for(int k = 0; k < fx.length; k++){
-			rounds[fx[k].getRoundNumber() - 1][fx[k].getMatchNumber() - 1] = fx[k];
+		for(int k = 0; k < listFixture.length; k++){
+			listRound[listFixture[k].getRoundNumber() - 1][listFixture[k].getMatchNumber() - 1] = listFixture[k];
 			
 		}
 	}
 	
 	
 	// Function for display all rounds match schedule
-	public static void showAllRounds(Fixture[][] rounds){
+	public static void showAllRounds(){
 		for (int i = 0; i < 26; i++) {
 			System.out.println("ROUND " + (i + 1) + " Matches ");
 			for (int j = 0; j < 8; j++) {
 				final DateFormat df1 = new SimpleDateFormat("HH:mm");
 				final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
-				String date = df2.format(rounds[i][j].getMatchDate());
-				String time = df1.format(rounds[i][j].getKickoffTime());
-				System.out.println(date + "\t" + rounds[i][j].getHomeTeamName() + "\t"
-						+ rounds[i][j].getAwayTeamName() + "\t" + rounds[i][j].getMatchVenue() + "\t" + time);
+				String date = df2.format(listRound[i][j].getMatchDate());
+				String time = df1.format(listRound[i][j].getKickoffTime());
+				System.out.println(date + "\t" + listRound[i][j].getHomeTeamName() + "\t"
+						+ listRound[i][j].getAwayTeamName() + "\t" + listRound[i][j].getMatchVenue() + "\t" + time);
 			}
 			System.out.println("\n\n");
 		}
 	}
 	
 	// Function for display one round match schedule when user select
-	public static void showAllRounds(Fixture[][] rounds, int roundNumber){
-		
+	public static void showOneRound(int roundNumber){
+		System.out.println("ROUND " + roundNumber + " Matches ");
+		for(int i = 0; i < 8; i++){
+			final DateFormat df1 = new SimpleDateFormat("HH:mm");
+			final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+			String date = df2.format(listRound[roundNumber - 1 ][i].getMatchDate());
+			String time = df1.format(listRound[roundNumber - 1][i].getKickoffTime());
+			System.out.println(date + "\t" + listRound[roundNumber - 1][i].getHomeTeamName() + "\t"
+					+ listRound[roundNumber - 1][i].getAwayTeamName() + "\t" + listRound[roundNumber - 1][i].getMatchVenue() + "\t" + time);
+		}
 	}
 
 }
