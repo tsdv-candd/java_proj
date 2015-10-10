@@ -27,47 +27,45 @@ public class Main {
 		int choices;
 		listTeam = new Team[16];
 		listFixture = new Fixture[16];
-		listRound = new Fixture[26][8];
-		// readTeam(listTeam);
+		listRound = new Fixture[2][8];
+		readTeam(listTeam);
 		readFixture(listFixture);
 		loadToRound(listRound, listFixture);
-		
-		//Test show data from listRound
-		
-		for(int i = 0; i < 26; i++ ){
-			System.out.println("ROUND "+ (i + 1) + " :");
-			for(int j = 0; j < 8 ; j++){
+
+		// Test show data from listRound
+
+		for (int i = 0; i < 2; i++) {
+			System.out.println("ROUND " + (i + 1) + " :");
+			for (int j = 0; j < 8; j++) {
 				final DateFormat df1 = new SimpleDateFormat("HH:mm");
 				final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
 				String date = df2.format(listRound[i][j].getMatchDate());
 				String time = df1.format(listRound[i][j].getKickoffTime());
-				System.out.println(date + "\t" + listRound[i][j].getHomeTeamName() + "\t" + listRound[i][j].getAwayTeamName() + "\t" +  listRound[i][j].getMatchVenue() + "\t" + time);
+				System.out.println(date + "\t" + listRound[i][j].getHomeTeamName() + "\t"
+						+ listRound[i][j].getAwayTeamName() + "\t" + listRound[i][j].getMatchVenue() + "\t" + time);
 			}
 		}
-		
+
 		// Test read data from Teams.txt file
 		/*
 		 * for (Team t : listTeam) { System.out.println(t.getTeamName() + "\t\t"
 		 * + t.getTeamMascot() + "\t" + t.getHomeGround()); }
 		 */
-		/*int numberRound = getNumberRounds(listFixture);*/
-		/*int [] rounds = new int [27];
-		rounds[0] = numberRound;
-		for(int j = 1; j < numberRound; j++ ){
-			rounds[j] = j;
-		}
-		int i = 0;
-		for(int j = 1; j < numberRound; j++){
-			
-		}
-		for(; i < listFixture.length; i++){
-			final DateFormat df1 = new SimpleDateFormat("HH:mm");
-			final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
-			String date = df2.format(m.getMatchDate());
-			String time = df1.format(m.getKickoffTime());
-			
-		
-		}*/
+		/* int numberRound = getNumberRounds(listFixture); */
+		/*
+		 * int [] rounds = new int [27]; rounds[0] = numberRound; for(int j = 1;
+		 * j < numberRound; j++ ){ rounds[j] = j; } int i = 0; for(int j = 1; j
+		 * < numberRound; j++){
+		 * 
+		 * } for(; i < listFixture.length; i++){ final DateFormat df1 = new
+		 * SimpleDateFormat("HH:mm"); final DateFormat df2 = new
+		 * SimpleDateFormat("dd/MM/yy"); String date =
+		 * df2.format(m.getMatchDate()); String time =
+		 * df1.format(m.getKickoffTime());
+		 * 
+		 * 
+		 * }
+		 */
 
 		do {
 			clearScreen();
@@ -131,7 +129,6 @@ public class Main {
 			int i = 0;
 			while (input.hasNextLine()) {
 				String line = input.nextLine();
-				System.out.println("---" + line);
 				Scanner scanner = new Scanner(line);
 				scanner.useDelimiter(",");
 				if (scanner.hasNext()) {
@@ -166,7 +163,6 @@ public class Main {
 			int i = 0;
 			while (input.hasNextLine()) {
 				String line = input.nextLine();
-				System.out.println("+++++++++   " + line + "+++++++++");
 				if (line.trim() != "") {
 					String matchs[] = line.split(",");
 					final DateFormat df1 = new SimpleDateFormat("HH:mm");
@@ -192,31 +188,29 @@ public class Main {
 		}
 
 	}
-	public static int getNumberRounds( Fixture[] fx){
+
+	public static int getNumberRounds(Fixture[] fx) {
 		int i = 1;
-		for (int j = 0; j < fx.length - 1; j ++){
-			if(fx[j].getRoundNumber() != fx[j+1].getRoundNumber())
-			{
+		for (int j = 0; j < fx.length - 1; j++) {
+			if (fx[j].getRoundNumber() != fx[j + 1].getRoundNumber()) {
 				i++;
 			}
 		}
 		return i;
 	}
-	
-	public static void loadToRound(Fixture[][] rounds, Fixture[] fx){		
-		for(int j = 0; j < 26 ; j++)
-		{
-			for(int i = 0; i < 8; i++){
-				for(int k = 0; i < fx.length; k++) {
-					if(fx[k].getRoundNumber() == (j +1)){
-						rounds[j][i] = fx[k];
-					}
+
+	public static void loadToRound(Fixture[][] rounds, Fixture[] fx) {
+		for (int j = 0; j < 2; j++) {
+			int i = 0;
+			for (int k = 0; k < fx.length; k++) {
+				if (fx[k].getRoundNumber() == (j + 1)) {
+					rounds[j][i] = fx[k];
+					i++;
 				}
 			}
+
 		}
-		
+
 	}
-	
-	
 
 }
