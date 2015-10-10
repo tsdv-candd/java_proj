@@ -168,8 +168,8 @@ public class Main {
 					String matchs[] = line.split(",");
 					final DateFormat df1 = new SimpleDateFormat("HH:mm");
 					final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
-					int matchNumber = Integer.parseInt(matchs[0]);
-					int roundNumber = Integer.parseInt(matchs[1]);
+					int roundNumber = Integer.parseInt(matchs[0]);
+					int matchNumber = Integer.parseInt(matchs[1]);					
 					String homeTeamName = matchs[2].toString();
 					String awayTeamName = matchs[3].toString();
 					String venue = matchs[4].toString();
