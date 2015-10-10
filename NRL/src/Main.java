@@ -26,26 +26,15 @@ public class Main {
 	public static void main(String[] argas) throws InterruptedException, ParseException {
 		int choices;
 		listTeam = new Team[16];
-		listFixture = new Fixture[16];
-		listRound = new Fixture[2][8];
+		listFixture = new Fixture[208];
+		listRound = new Fixture[26][8];
 		readTeam(listTeam);
 		readFixture(listFixture);
 		loadToRound(listRound, listFixture);
-
+		showAllRounds(listRound);
 		// Test show data from listRound
 
-		for (int i = 0; i < 2; i++) {
-			System.out.println("ROUND " + (i + 1) + " Matches ");
-			for (int j = 0; j < 8; j++) {
-				final DateFormat df1 = new SimpleDateFormat("HH:mm");
-				final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
-				String date = df2.format(listRound[i][j].getMatchDate());
-				String time = df1.format(listRound[i][j].getKickoffTime());
-				System.out.println(date + "\t" + listRound[i][j].getHomeTeamName() + "\t"
-						+ listRound[i][j].getAwayTeamName() + "\t" + listRound[i][j].getMatchVenue() + "\t" + time);
-			}
-			System.out.println("\n\n");
-		}
+		
 
 		// Test read data from Teams.txt file
 		/*
@@ -159,7 +148,7 @@ public class Main {
 	public static void readFixture(Fixture[] fx) throws ParseException {
 
 		try {
-			File f = new File("Resources/Fixtures.txt");
+			File f = new File("Resources/Fixtures1.txt");
 			Scanner input = new Scanner(new FileInputStream(f));
 			int i = 0;
 			while (input.hasNextLine()) {
@@ -215,6 +204,28 @@ public class Main {
 			rounds[fx[k].getRoundNumber() - 1][fx[k].getMatchNumber() - 1] = fx[k];
 			
 		}
+	}
+	
+	
+	// Function for display all rounds match schedule
+	public static void showAllRounds(Fixture[][] rounds){
+		for (int i = 0; i < 26; i++) {
+			System.out.println("ROUND " + (i + 1) + " Matches ");
+			for (int j = 0; j < 8; j++) {
+				final DateFormat df1 = new SimpleDateFormat("HH:mm");
+				final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+				String date = df2.format(rounds[i][j].getMatchDate());
+				String time = df1.format(rounds[i][j].getKickoffTime());
+				System.out.println(date + "\t" + rounds[i][j].getHomeTeamName() + "\t"
+						+ rounds[i][j].getAwayTeamName() + "\t" + rounds[i][j].getMatchVenue() + "\t" + time);
+			}
+			System.out.println("\n\n");
+		}
+	}
+	
+	// Function for display one round match schedule when user select
+	public static void showAllRounds(Fixture[][] rounds, int roundNumber){
+		
 	}
 
 }
