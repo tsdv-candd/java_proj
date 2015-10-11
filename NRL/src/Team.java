@@ -106,4 +106,33 @@ public class Team {
 	public void setTotalPoints(int totalPoints) {
 		this.totalPoints = totalPoints;
 	}
+	
+	public void update(int homeScore, int awayScore, boolean isHomeTeam){
+		numberGamePlayeds += 1;
+		if(isHomeTeam){
+			this.setPointsScoreFor(homeScore);
+			if(homeScore > awayScore){
+				numberGameWons += 1;
+			}
+			else
+			{
+				numberGameLosts += 1;
+			}
+		}
+		else
+		{
+			this.setPointsScoreAgainst(awayScore);
+			if(awayScore > homeScore){
+				numberGameWons += 1;
+			}
+			else
+			{
+				numberGameLosts += 1;
+			}
+		}
+		totalPoints += numberGameWons * 2;
+		numberOfByes= numberGamePlayeds - (numberGameWons + numberGameLosts);
+		
+	}	
+	
 }

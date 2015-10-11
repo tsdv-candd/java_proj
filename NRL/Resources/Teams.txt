@@ -1,16 +1,16 @@
-Chicago , team1 , San1
-ManChesterUnited , team2 , San2
-Chelsea,team3,San3
-Arsenal,team4,San4
-Newcastle,team5,San5
-Tottenham,team6,San6
-WestHam,team7,San7
-Swansea,team8,San8
-Norwish,team9,San9
-WestBrom,team10,San10
-Sunderland,team11,San11
-Aston,team12,San12
-Stoke,team13,San13
-Liverpool,team14,San14
-Southampton,team15,San15
-Everton,team16,San16
+team1,t1,stadium1
+team2,t2,stadium2
+team3,t3,stadium3
+team4,t4,stadium4
+team5,t5,stadium5
+team6,t6,stadium6
+team7,t7,stadium7
+team8,t8,stadium8
+team9,t9,stadium9
+team10,t10,stadium10
+team11,t11,stadium11
+team12,t12,stadium12
+team13,t13,stadium13
+team14,t14,stadium14
+team15,t15,stadium15
+team16,t16,stadium16
