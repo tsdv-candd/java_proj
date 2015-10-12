@@ -3,126 +3,123 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Fixture {
-     private int matchNumber;
-     private int roundNumber;
-     private String homeTeamName;
-     private String awayTeamName;
-     private Date matchDate;
-     private String matchVenue;
-     private Date kickoffTime;
-     private int homeTeamScore;
-     private int awayTeamScore;
-     
-     public Fixture(int matchNumber, int roundNumber, String homeName, String awayName, String Venue, Date kickoffTime, Date date){
-    	    this.matchNumber = matchNumber;
-    	    this.roundNumber = roundNumber;
-    	    this.homeTeamName = homeName;
-    	    this.awayTeamName = awayName;
-    	    this.matchVenue = Venue;
-    	    this.kickoffTime = kickoffTime;
-    	    this.matchDate = date;
-     }
+  private int matchNumber;
+  private int roundNumber;
+  private String homeTeamName;
+  private String awayTeamName;
+  private Date matchDate;
+  private String matchVenue;
+  private Date kickoffTime;
+  private int homeTeamScore;
+  private int awayTeamScore;
 
-     
-	public int getMatchNumber() {
-		return matchNumber;
-	}
+  public Fixture(int matchNumber, int roundNumber, String homeName, String awayName, String Venue,
+      Date kickoffTime, Date date) {
+    this.matchNumber = matchNumber;
+    this.roundNumber = roundNumber;
+    this.homeTeamName = homeName;
+    this.awayTeamName = awayName;
+    this.matchVenue = Venue;
+    this.kickoffTime = kickoffTime;
+    this.matchDate = date;
+  }
 
-	public void setMatchNumber(int matchNumber) {
-		this.matchNumber = matchNumber;
-	}
 
-	public int getRoundNumber() {
-		return roundNumber;
-	}
+  public int getMatchNumber() {
+    return matchNumber;
+  }
 
-	public void setRoundNumber(int roundNumber) {
-		this.roundNumber = roundNumber;
-	}
+  public void setMatchNumber(int matchNumber) {
+    this.matchNumber = matchNumber;
+  }
 
-	public String getHomeTeamName() {
-		return homeTeamName;
-	}
+  public int getRoundNumber() {
+    return roundNumber;
+  }
 
-	public void setHomeTeamName(String homeTeamName) {
-		this.homeTeamName = homeTeamName;
-	}
+  public void setRoundNumber(int roundNumber) {
+    this.roundNumber = roundNumber;
+  }
 
-	public String getAwayTeamName() {
-		return awayTeamName;
-	}
+  public String getHomeTeamName() {
+    return homeTeamName;
+  }
 
-	public void setAwayTeamName(String awayTeamName) {
-		this.awayTeamName = awayTeamName;
-	}
+  public void setHomeTeamName(String homeTeamName) {
+    this.homeTeamName = homeTeamName;
+  }
 
-	public Date getMatchDate() {
-		return matchDate;
-	}
+  public String getAwayTeamName() {
+    return awayTeamName;
+  }
 
-	public void setMatchDate(Date matchDate) {
-		this.matchDate = matchDate;
-	}
+  public void setAwayTeamName(String awayTeamName) {
+    this.awayTeamName = awayTeamName;
+  }
 
-	public String getMatchVenue() {
-		return matchVenue;
-	}
+  public Date getMatchDate() {
+    return matchDate;
+  }
 
-	public void setMatchVenue(String matchVenue) {
-		this.matchVenue = matchVenue;
-	}
+  public void setMatchDate(Date matchDate) {
+    this.matchDate = matchDate;
+  }
 
-	public Date getKickoffTime() {
-		return kickoffTime;
-	}
+  public String getMatchVenue() {
+    return matchVenue;
+  }
 
-	public void setKickoffTime(Date kickoffTime) {
-		this.kickoffTime = kickoffTime;
-	}
+  public void setMatchVenue(String matchVenue) {
+    this.matchVenue = matchVenue;
+  }
 
-	public int getHomeTeamScore() {
-		return homeTeamScore;
-	}
+  public Date getKickoffTime() {
+    return kickoffTime;
+  }
 
-	public void setHomeTeamScore(int homeTeamScore) {
-		this.homeTeamScore = homeTeamScore;
-	}
+  public void setKickoffTime(Date kickoffTime) {
+    this.kickoffTime = kickoffTime;
+  }
 
-	public int getAwayTeamScore() {
-		return awayTeamScore;
-	}
+  public int getHomeTeamScore() {
+    return homeTeamScore;
+  }
 
-	public void setAwayTeamScore(int awayTeamScore) {
-		this.awayTeamScore = awayTeamScore;
-	}
-         
-    public void display(boolean isHomeTeam){
-		final DateFormat df2 = new SimpleDateFormat("dd/MM/yy"); 
-		String date = df2.format(this.getMatchDate());
-		if(isHomeTeam)
-		{
-			String status;
-			if(homeTeamScore > awayTeamScore){
-				status = "Win";
-			}
-			else 
-			{
-				status ="Loss";
-			}
-			System.out.println( roundNumber + "\t" + date + "\t" + awayTeamName + "\t" + status + "\t" + homeTeamScore + "-" + awayTeamScore);
-		}
-		else{
-			String status;
-			if(homeTeamScore > awayTeamScore){
-				status = "Loss";
-			}
-			else 
-			{
-				status ="Win";
-			}
-			System.out.println(roundNumber + "\t" + date + "\t" + homeTeamName + "\t" + status + "\t" + homeTeamScore + "-" + awayTeamScore);
-		}
-    	
+  public void setHomeTeamScore(int homeTeamScore) {
+    this.homeTeamScore = homeTeamScore;
+  }
+
+  public int getAwayTeamScore() {
+    return awayTeamScore;
+  }
+
+  public void setAwayTeamScore(int awayTeamScore) {
+    this.awayTeamScore = awayTeamScore;
+  }
+
+  public void display(boolean isHomeTeam) {
+    final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+    String date = df2.format(this.getMatchDate());
+    if (isHomeTeam) {
+      String status;
+      if (homeTeamScore > awayTeamScore) {
+        status = "Win";
+      } else {
+        status = "Loss";
+      }
+      System.out.println(roundNumber + "\t" + date + "\t" + awayTeamName + "\t" + status + "\t"
+          + homeTeamScore + "-" + awayTeamScore);
+    } else {
+      String status;
+      if (homeTeamScore > awayTeamScore) {
+        status = "Loss";
+      } else {
+        status = "Win";
+      }
+      System.out.println(roundNumber + "\t" + date + "\t" + homeTeamName + "\t" + status + "\t"
+          + homeTeamScore + "-" + awayTeamScore);
     }
-     
+
+  }
+
 }
