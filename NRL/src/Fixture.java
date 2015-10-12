@@ -1,3 +1,5 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Fixture {
@@ -94,6 +96,33 @@ public class Fixture {
 		this.awayTeamScore = awayTeamScore;
 	}
          
-     
+    public void display(boolean isHomeTeam){
+		final DateFormat df2 = new SimpleDateFormat("dd/MM/yy"); 
+		String date = df2.format(this.getMatchDate());
+		if(isHomeTeam)
+		{
+			String status;
+			if(homeTeamScore > awayTeamScore){
+				status = "Win";
+			}
+			else 
+			{
+				status ="Loss";
+			}
+			System.out.println( roundNumber + "\t" + date + "\t" + awayTeamName + "\t" + status + "\t" + homeTeamScore + "-" + awayTeamScore);
+		}
+		else{
+			String status;
+			if(homeTeamScore > awayTeamScore){
+				status = "Loss";
+			}
+			else 
+			{
+				status ="Win";
+			}
+			System.out.println(roundNumber + "\t" + date + "\t" + homeTeamName + "\t" + status + "\t" + homeTeamScore + "-" + awayTeamScore);
+		}
+    	
+    }
      
 }

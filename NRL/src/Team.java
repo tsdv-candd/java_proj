@@ -1,5 +1,5 @@
 
-public class Team {
+public class Team implements Comparable<Team>{
 
 	private String teamName;
 	private String teamMascot;
@@ -111,6 +111,7 @@ public class Team {
 		numberGamePlayeds += 1;
 		if(isHomeTeam){
 			this.setPointsScoreFor(homeScore);
+			this.setPointsScoreAgainst(awayScore);
 			if(homeScore > awayScore){
 				numberGameWons += 1;
 			}
@@ -121,7 +122,8 @@ public class Team {
 		}
 		else
 		{
-			this.setPointsScoreAgainst(awayScore);
+			this.setPointsScoreFor(awayScore);
+			this.setPointsScoreAgainst(homeScore);
 			if(awayScore > homeScore){
 				numberGameWons += 1;
 			}
@@ -133,6 +135,54 @@ public class Team {
 		totalPoints += numberGameWons * 2;
 		numberOfByes= numberGamePlayeds - (numberGameWons + numberGameLosts);
 		
+	}
+
+	@Override
+	public int compareTo(Team otherTeam) {
+		if(totalPoints == otherTeam.totalPoints){
+			int temp1 = pointsScoreFor - pointsScoreAgainst;
+			int temp2 = otherTeam.pointsScoreFor - otherTeam.pointsScoreAgainst;
+			if(temp1 == temp2){
+				if(pointsScoreFor == otherTeam.pointsScoreFor){		 
+					 return teamName.compareToIgnoreCase(otherTeam.teamName);					
+				}
+				else{
+					return (pointsScoreFor - otherTeam.pointsScoreFor);
+				}			
+			}
+			else{
+				return (temp1 - temp2);
+			}
+		}
+		else
+		{
+			return (totalPoints - otherTeam.totalPoints);
+		}
+		
 	}	
+
+	public void updateRank( Team[] t){
+		int i = 0;
+		while (!teamName.equals(t[i].getTeamName())){
+			i++;
+		}
+		this.setRank(i + 1);
+	}
+	
+	public void showResult( int currentRound, Fixture [][] fx){		
+		for(int i = 0 ; i < currentRound ; i++){
+			for(int j = 0; j < 8; j++){				
+				if(teamName.equals(fx[i][j].getHomeTeamName())){					
+					fx[i][j].display(true);
+				}
+				if(teamName.equals(fx[i][j].getAwayTeamName())){					
+					fx[i][j].display(false);
+				}				
+			}
+		}
+		System.out.println("Total competition poins after " + currentRound + " rounds: " + totalPoints);
+	}
+    
+	
 	
 }
