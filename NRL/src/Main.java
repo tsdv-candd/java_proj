@@ -429,7 +429,7 @@ public class Main {
     int position;
     do {
       clearScreen();
-      System.out.println("Please enter name of the Team you want to see: ");
+      System.out.print("Please enter name of the Team you want to see: ");
       Scanner scan = new Scanner(System.in);
       teamName = scan.nextLine();
       // System.out.println("Ten cua team la: " + teamName);
@@ -438,7 +438,7 @@ public class Main {
     } while (position == -1);
     // System.out.println("Vong hien tai: " + currentRound);
     //System.out.println("Vi tri cua team la: " + (position + 1));
-    System.out.println("listTeam[position].getTeamName la: " + listTeam[position].getTeamName());
+    System.out.println(listTeam[position].getTeamName() +" Result:");
     listTeam[position].showResult(currentRound, listRound);
   }
 
