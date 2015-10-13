@@ -16,7 +16,7 @@ public class Team implements Comparable<Team> {
   public Team(String teamName, String teamMascot, String homeGround) {
     this.teamName = teamName;
     this.teamMascot = teamMascot;
-    this.homeGround = homeGround;
+    this.homeGround = homeGround;  
   }
 
   public String getTeamName() {
@@ -107,28 +107,35 @@ public class Team implements Comparable<Team> {
     this.totalPoints = totalPoints;
   }
 
-  public void update(int homeScore, int awayScore, boolean isHomeTeam) {
-    numberGamePlayeds += 1;
-    if (isHomeTeam) {
-      this.setPointsScoreFor(homeScore);
-      this.setPointsScoreAgainst(awayScore);
-      if (homeScore > awayScore) {
-        numberGameWons += 1;
-      } else {
-        numberGameLosts += 1;
-      }
+  public void update(int homeScore, int awayScore, int check) {
+    if (check == 3) {
+      this.numberOfByes += 1;
     } else {
-      this.setPointsScoreFor(awayScore);
-      this.setPointsScoreAgainst(homeScore);
-      if (awayScore > homeScore) {
-        numberGameWons += 1;
-      } else {
-        numberGameLosts += 1;
+      numberGamePlayeds += 1;
+      if (check == 1) {
+        this.pointsScoreFor += homeScore;
+        this.pointsScoreAgainst += awayScore;
+        if (homeScore > awayScore) {
+          numberGameWons += 1;
+        } else if (homeScore < awayScore) {
+          numberGameLosts += 1;
+        }
+      }
+      if (check == 2) {
+        this.pointsScoreFor += awayScore;
+        this.pointsScoreAgainst += homeScore;
+        if (awayScore > homeScore) {
+          numberGameWons += 1;
+        } else if (awayScore < homeScore) {
+          numberGameLosts += 1;
+        }
       }
     }
-    totalPoints += numberGameWons * 2;
-    numberOfByes = numberGamePlayeds - (numberGameWons + numberGameLosts);
 
+
+    int numberGameDraws = numberGamePlayeds - (numberGameWons + numberGameLosts);
+    totalPoints = 2 * (numberGameWons + numberOfByes) + 1 * numberGameDraws;
+    
   }
 
   @Override
@@ -162,11 +169,15 @@ public class Team implements Comparable<Team> {
   public void showResult(int currentRound, Fixture[][] fx) {
     for (int i = 0; i < currentRound; i++) {
       for (int j = 0; j < 8; j++) {
-        if (teamName.equals(fx[i][j].getHomeTeamName())) {
-          fx[i][j].display(true);
-        }
-        if (teamName.equals(fx[i][j].getAwayTeamName())) {
-          fx[i][j].display(false);
+        if (fx[i][j] != null) {
+          if (teamName.equals(fx[i][j].getHomeTeamName())) {
+            fx[i][j].display(true);
+          }
+          if (teamName.equals(fx[i][j].getAwayTeamName())) {
+            fx[i][j].display(false);
+          }
+        } else {
+          continue;
         }
       }
     }
