@@ -282,7 +282,7 @@ public class Main_18219249 {
 
   public static void showAllRounds() {
     for (int i = 0; i < ROUNDS_MAX; i++) {
-      showOneRound(i+1);
+      showOneRound(i + 1);
     }
   }
 
@@ -290,8 +290,9 @@ public class Main_18219249 {
   public static void showOneRound(int roundNumber) {
     System.out.println("ROUND " + roundNumber + " Matches ");
     String leftAlignFormat = "%-10s\t%-20s\t%-20s\t%-20s\t%-15s%n";
-    System.out.format(leftAlignFormat,"Date","Home Team","Away Team","Venue", "Kick off time");
-    System.out.format("______________________________________________________________________________________________________%n");
+    System.out.format(leftAlignFormat, "Date", "Home Team", "Away Team", "Venue", "Kick off time");
+    System.out
+        .format("______________________________________________________________________________________________________%n");
     for (int i = 0; i < MATCHS_PER_ROUND_MAX; i++) {
       final DateFormat df1 = new SimpleDateFormat("HH:mm");
       final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
@@ -300,9 +301,6 @@ public class Main_18219249 {
       } else {
         String date = df2.format(listRound[roundNumber - 1][i].getMatchDate());
         String time = df1.format(listRound[roundNumber - 1][i].getKickoffTime());
-        // System.out.println(date + "\t" + listRound[roundNumber - 1][i].getHomeTeamName() + "\t"
-        // + listRound[roundNumber - 1][i].getAwayTeamName() + "\t"
-        // + listRound[roundNumber - 1][i].getMatchVenue() + "\t" + time);
         System.out.format(leftAlignFormat, date, listRound[roundNumber - 1][i].getHomeTeamName(),
             listRound[roundNumber - 1][i].getAwayTeamName(),
             listRound[roundNumber - 1][i].getMatchVenue(), time);
@@ -426,19 +424,35 @@ public class Main_18219249 {
 
 
   public static void displayLadder() {
+    String leftAlignFormat = " %-4d\t%-20s\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d%n";
+    System.out.println();
+    System.out.println(" Pos\tTeam\t\t\tP\tW\tL\tD\tB\tF\tA\tPts");
+    System.out
+        .format("____________________________________________________________________________________________%n");
+
     for (Team_18219249 t : listTeam) {
-      System.out.println(t.getRank() + "\t" + t.getTeamName() + "\t" + t.getNumberGamePlayeds()
-          + "\t" + t.getNumberGameWons() + "\t" + t.getNumberGameLosts() + "\t"
-          + (t.getNumberGamePlayeds() - (t.getNumberGameWons() + t.getNumberGameLosts())) + "\t"
-          + t.getNumberOfByes() + "\t" + t.getPointsScoreFor() + "\t" + t.getPointsScoreAgainst()
-          + "\t" + t.getTotalPoints());
+      System.out
+          .format(leftAlignFormat, t.getRank(), t.getTeamName(), t.getNumberGamePlayeds(),
+              t.getNumberGameWons(), t.getNumberGameLosts(),
+              (t.getNumberGamePlayeds() - (t.getNumberGameWons() + t.getNumberGameLosts())),
+              t.getNumberOfByes(), t.getPointsScoreFor(), t.getPointsScoreAgainst(),
+              t.getTotalPoints());
+      System.out
+      .format("____________________________________________________________________________________________%n");
     }
+    System.out.println();
+    System.out.println();
   }
 
 
 
   public static void displayTeamResults(int currentRound) {
     String teamName;
+    String leftAlignFormat = " %-2d\t%-10s\t%-20s\t%-6s%n";
+    System.out.println();
+    System.out.println(" Pos\tTeam\t\t\tP\tW\tL\tD\tB\tF\tA\tPts");
+    System.out
+        .format("____________________________________________________________________________________________%n");
     int position;
     do {
       System.out.println("Please enter name of the Team you want to see: ");
