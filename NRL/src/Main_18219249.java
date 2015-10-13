@@ -1,8 +1,5 @@
 /*
- * Student ID: 18219249 
- * Name: Mohsen Mirhashemi 
- * Campus: PT parramatta Campus 
- * Tutor Name: Indra Class
+ * Student ID: 18219249 Name: Mohsen Mirhashemi Campus: PT parramatta Campus Tutor Name: Indra Class
  * Day: Thursdays Class Time: 12:00-14:00
  */
 
@@ -153,9 +150,7 @@ public class Main_18219249 {
       if (i != LIST_TEAMS_SIZE) {
         System.out.println("File input error. Systems are going down ...");
         System.exit(1);
-      }
-      // else
-      // System.out.println("Read file ok");
+      }      
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
@@ -184,9 +179,8 @@ public class Main_18219249 {
           String date = matchs[6].toString();
           Date matchDate = df2.parse(date);
 
-          listFixture[i] =
-              new Fixture_18219249(matchNumber, roundNumber, homeTeamName, awayTeamName, venue,
-                  kickoffTime, matchDate);
+          listFixture[i] = new Fixture_18219249(matchNumber, roundNumber, homeTeamName,
+              awayTeamName, venue, kickoffTime, matchDate);
         }
         i++;
       }
@@ -294,8 +288,8 @@ public class Main_18219249 {
     System.out.println("ROUND " + roundNumber + " Matches ");
     String leftAlignFormat = "%-10s\t%-20s\t%-20s\t%-20s\t%-15s%n";
     System.out.format(leftAlignFormat, "Date", "Home Team", "Away Team", "Venue", "Kick off time");
-    System.out
-        .format("______________________________________________________________________________________________________%n");
+    System.out.format(
+        "______________________________________________________________________________________________________%n");
     for (int i = 0; i < MATCHS_PER_ROUND_MAX; i++) {
       final DateFormat df1 = new SimpleDateFormat("HH:mm");
       final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
@@ -341,11 +335,11 @@ public class Main_18219249 {
       System.out.println("The Match number  " + matchNumber + " between "
           + listRound[roundNumber - 1][i].getHomeTeamName() + " - "
           + listRound[roundNumber - 1][i].getAwayTeamName());
-      System.out.print("Enter the score for " + listRound[roundNumber - 1][i].getHomeTeamName()
-          + " :");
+      System.out
+          .print("Enter the score for " + listRound[roundNumber - 1][i].getHomeTeamName() + " :");
       score1 = scan.nextInt();
-      System.out.print("Enter the score for " + listRound[roundNumber - 1][i].getAwayTeamName()
-          + " :");
+      System.out
+          .print("Enter the score for " + listRound[roundNumber - 1][i].getAwayTeamName() + " :");
       score2 = scan.nextInt();
       roundResult[i] = (matchNumber) + "," + score1 + "," + score2;
     }
@@ -373,7 +367,7 @@ public class Main_18219249 {
     int choices;
     do {
       displayMatchScheduleChoices();
-      System.out.println("Please enter your choice: ");
+      System.out.print("Please enter your choice: ");
       Scanner in = new Scanner(System.in);
       choices = in.nextInt();
       switch (choices) {
@@ -390,7 +384,7 @@ public class Main_18219249 {
           showOneRound(roundNumber);
           break;
         default:
-          System.out.println("Please enter the choice between 1 and 2");
+          System.out.print("Please enter the choice between 1 and 2");
           Thread.sleep(2000);
           break;
       }
@@ -401,8 +395,10 @@ public class Main_18219249 {
 
   public static void enterRoundResults(int currentRound) throws IOException {
     String[] content = new String[MATCHS_PER_ROUND_MAX];
+    int flag = 0;
     for (int i = 0; i < currentRound; i++) {
       if (list[i] == 0) {
+        flag = 1;
         File file = new File("Resources/Round" + (i + 1) + ".txt");
         showOneRound(i + 1);
         System.out.println("");
@@ -423,6 +419,9 @@ public class Main_18219249 {
         updateRankListTeam();
       }
     }
+    if (flag == 0) {
+      System.out.println("All round's results are up to date and loaded! \n");
+    }
   }
 
 
@@ -430,18 +429,17 @@ public class Main_18219249 {
     String leftAlignFormat = " %-4d\t%-20s\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d%n";
     System.out.println();
     System.out.println(" Pos\tTeam\t\t\tP\tW\tL\tD\tB\tF\tA\tPts");
-    System.out
-        .format("____________________________________________________________________________________________%n");
+    System.out.format(
+        "____________________________________________________________________________________________%n");
 
     for (Team_18219249 t : listTeam) {
-      System.out
-          .format(leftAlignFormat, t.getRank(), t.getTeamName(), t.getNumberGamePlayeds(),
-              t.getNumberGameWons(), t.getNumberGameLosts(),
-              (t.getNumberGamePlayeds() - (t.getNumberGameWons() + t.getNumberGameLosts())),
-              t.getNumberOfByes(), t.getPointsScoreFor(), t.getPointsScoreAgainst(),
-              t.getTotalPoints());
-      System.out
-      .format("____________________________________________________________________________________________%n");
+      System.out.format(leftAlignFormat, t.getRank(), t.getTeamName(), t.getNumberGamePlayeds(),
+          t.getNumberGameWons(), t.getNumberGameLosts(),
+          (t.getNumberGamePlayeds() - (t.getNumberGameWons() + t.getNumberGameLosts())),
+          t.getNumberOfByes(), t.getPointsScoreFor(), t.getPointsScoreAgainst(),
+          t.getTotalPoints());
+      System.out.format(
+          "____________________________________________________________________________________________%n");
     }
     System.out.println();
     System.out.println();
@@ -453,7 +451,7 @@ public class Main_18219249 {
     String teamName;
     int position;
     do {
-      System.out.println("Please enter name of the Team you want to see: ");
+      System.out.print("Please enter name of the Team you want to see: ");
       Scanner scan = new Scanner(System.in);
       teamName = scan.nextLine();
       position = testName(teamName);
@@ -464,9 +462,10 @@ public class Main_18219249 {
     } else {
       System.out.println("Match Results for rounds 1 to " + currentRound);
       System.out.println("Round\tDate\t\t\tTeam Played\t\tW/L/D\t\tScore");
-      System.out.format("_______________________________________________________________________________%n");
+      System.out.format(
+          "_______________________________________________________________________________%n");
     }
-    
+
     listTeam[position].showResult(currentRound, listRound);
   }
 
