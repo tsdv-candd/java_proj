@@ -1,5 +1,13 @@
+/*
+ * Student ID:  18219249
+ * Name:        Mohsen Mirhashemi
+ * Campus:      PT parramatta Campus
+ * Tutor Name:  Indra 
+ * Class Day:   Thursdays
+ * Class Time:  12:00-14:00
+ */
 
-public class Team implements Comparable<Team> {
+public class Team_18219249 implements Comparable<Team_18219249> {
 
   private String teamName;
   private String teamMascot;
@@ -13,7 +21,7 @@ public class Team implements Comparable<Team> {
   private int pointsScoreAgainst;
   private int totalPoints;
 
-  public Team(String teamName, String teamMascot, String homeGround) {
+  public Team_18219249(String teamName, String teamMascot, String homeGround) {
     this.teamName = teamName;
     this.teamMascot = teamMascot;
     this.homeGround = homeGround;  
@@ -139,7 +147,7 @@ public class Team implements Comparable<Team> {
   }
 
   @Override
-  public int compareTo(Team otherTeam) {
+  public int compareTo(Team_18219249 otherTeam) {
     if (totalPoints == otherTeam.totalPoints) {
       int temp1 = pointsScoreFor - pointsScoreAgainst;
       int temp2 = otherTeam.pointsScoreFor - otherTeam.pointsScoreAgainst;
@@ -158,7 +166,7 @@ public class Team implements Comparable<Team> {
 
   }
 
-  public void updateRank(Team[] t) {
+  public void updateRank(Team_18219249[] t) {
     int i = 0;
     while (!teamName.equals(t[i].getTeamName())) {
       i++;
@@ -166,7 +174,7 @@ public class Team implements Comparable<Team> {
     this.setRank(i + 1);
   }
 
-  public void showResult(int currentRound, Fixture[][] fx) {
+  public void showResult(int currentRound, Fixture_18219249[][] fx) {
     for (int i = 0; i < currentRound; i++) {
       for (int j = 0; j < 8; j++) {
         if (fx[i][j] != null) {

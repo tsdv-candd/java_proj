@@ -1,8 +1,17 @@
+/*
+ * Student ID:  18219249
+ * Name:        Mohsen Mirhashemi
+ * Campus:      PT parramatta Campus
+ * Tutor Name:  Indra 
+ * Class Day:   Thursdays
+ * Class Time:  12:00-14:00
+ */
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Fixture {
+public class Fixture_18219249 {
   private int matchNumber;
   private int roundNumber;
   private String homeTeamName;
@@ -13,7 +22,7 @@ public class Fixture {
   private int homeTeamScore;
   private int awayTeamScore;
 
-  public Fixture(int matchNumber, int roundNumber, String homeName, String awayName, String Venue,
+  public Fixture_18219249(int matchNumber, int roundNumber, String homeName, String awayName, String Venue,
       Date kickoffTime, Date date) {
     this.matchNumber = matchNumber;
     this.roundNumber = roundNumber;
