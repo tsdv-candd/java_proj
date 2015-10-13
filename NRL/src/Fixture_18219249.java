@@ -103,7 +103,7 @@ public class Fixture_18219249 {
   }
 
   public void display(boolean isHomeTeam) {
-    String leftAlignFormat = " %-2d\t%-20s\t%-20s\t%-10s\t%-4d-%-4d%n";   
+    String leftAlignFormat = " %-2d\t%-20s\t%-20s\t%-10s\t%02d-%02d%n";   
     final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
     String date = df2.format(this.getMatchDate());
     if (isHomeTeam) {
