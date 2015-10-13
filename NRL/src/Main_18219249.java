@@ -150,7 +150,7 @@ public class Main_18219249 {
       if (i != LIST_TEAMS_SIZE) {
         System.out.println("File input error. Systems are going down ...");
         System.exit(1);
-      }      
+      }
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
@@ -450,6 +450,8 @@ public class Main_18219249 {
   public static void displayTeamResults(int currentRound) {
     String teamName;
     int position;
+    System.out.println("The list name of teams is below:");
+    displayTeamNames();
     do {
       System.out.print("Please enter name of the Team you want to see: ");
       Scanner scan = new Scanner(System.in);
@@ -467,6 +469,12 @@ public class Main_18219249 {
     }
 
     listTeam[position].showResult(currentRound, listRound);
+  }
+
+  public static void displayTeamNames() {
+    for (int i = 0; i < LIST_TEAMS_SIZE; i++) {
+      System.out.println("[" + (i + 1) + "]" + listTeam[i].getTeamName());
+    }
   }
 
 

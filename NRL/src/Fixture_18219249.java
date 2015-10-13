@@ -1,10 +1,6 @@
 /*
- * Student ID: 18219249 
- * Name: Mohsen Mirhashemi 
- * Campus: PT parramatta Campus 
- * Tutor Name: Indra Class
- * Day: Thursdays 
- * Class Time: 12:00-14:00
+ * Student ID: 18219249 Name: Mohsen Mirhashemi Campus: PT parramatta Campus Tutor Name: Indra Class
+ * Day: Thursdays Class Time: 12:00-14:00
  */
 
 import java.text.DateFormat;
@@ -107,31 +103,30 @@ public class Fixture_18219249 {
   }
 
   public void display(boolean isHomeTeam) {
-    String leftAlignFormat = " %-2d\t%-20s\t%-20s\t%-10s\t%-4d-%-4d%n";
-    // System.out.println();
+    String leftAlignFormat = " %-2d\t%-20s\t%-20s\t%-10s\t%-4d-%-4d%n";   
     final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
     String date = df2.format(this.getMatchDate());
     if (isHomeTeam) {
       String status;
       if (homeTeamScore > awayTeamScore) {
         status = "Win";
-      } else {
+      } else if (homeTeamScore < awayTeamScore) {
         status = "Loss";
+      } else {
+        status = "Draw";
       }
-      // System.out.println(roundNumber + "\t" + date + "\t" + awayTeamName + "\t" + status + "\t"
-      // + homeTeamScore + "-" + awayTeamScore);
       System.out.format(leftAlignFormat, roundNumber, date, awayTeamName, status, homeTeamScore,
           awayTeamScore);
     } else {
       String status;
       if (homeTeamScore > awayTeamScore) {
         status = "Loss";
-      } else {
+      } else if (homeTeamScore < awayTeamScore) {
         status = "Win";
+      } else {
+        status = "Draw";
       }
-      //System.out.println(roundNumber + "\t" + date + "\t" + homeTeamName + "\t" + status + "\t"
-      //    + homeTeamScore + "-" + awayTeamScore);
-      System.out.format(leftAlignFormat, roundNumber, date, awayTeamName, status, homeTeamScore,
+      System.out.format(leftAlignFormat, roundNumber, date, homeTeamName, status, homeTeamScore,
           awayTeamScore);
     }
   }
