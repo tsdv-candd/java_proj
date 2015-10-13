@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  * @author Mason
- *
+ * 
  */
 public class Main {
   /**
@@ -109,7 +109,7 @@ public class Main {
           Thread.sleep(5000);
           break;
         default:
-          System.out.println("Please enter the choice between 1 and 4");
+          System.out.print("Please enter the choice between 1 and 4");
           Thread.sleep(10000);
           break;
       }
@@ -215,8 +215,9 @@ public class Main {
           String date = matchs[6].toString();
           Date matchDate = df2.parse(date);
 
-          listFixture[i] = new Fixture(matchNumber, roundNumber, homeTeamName, awayTeamName, venue,
-              kickoffTime, matchDate);
+          listFixture[i] =
+              new Fixture(matchNumber, roundNumber, homeTeamName, awayTeamName, venue, kickoffTime,
+                  matchDate);
         }
         i++;
       }
@@ -394,7 +395,7 @@ public class Main {
     do {
       clearScreen();
       displayMatchScheduleChoices();
-      System.out.println("Please enter your choice: ");
+      System.out.print("Please enter your choice: ");
       Scanner in = new Scanner(System.in);
       choices = in.nextInt();
       switch (choices) {
@@ -428,7 +429,7 @@ public class Main {
     int position;
     do {
       clearScreen();
-      System.out.println("Please enter name of the Team you want to see: ");
+      System.out.print("Please enter name of the Team you want to see: ");
       Scanner scan = new Scanner(System.in);
       teamName = scan.nextLine();
       // System.out.println("Ten cua team la: " + teamName);
@@ -436,8 +437,8 @@ public class Main {
       // System.out.println("Vi tri cua team la: " + (position + 1));
     } while (position == -1);
     // System.out.println("Vong hien tai: " + currentRound);
-    System.out.println("Vi tri cua team la: " + (position + 1));
-    System.out.println("listTeam[position].getTeamName la: " + listTeam[position].getTeamName());
+    //System.out.println("Vi tri cua team la: " + (position + 1));
+    System.out.println(listTeam[position].getTeamName() +" Result:");
     listTeam[position].showResult(currentRound, listRound);
   }
 
@@ -448,14 +449,19 @@ public class Main {
   // displayLadder---------------------------------------------------------------------|
   // ========================================================================|
   public static void displayLadder() {
+    System.out
+        .println("____________________________________________________________________________");
+    System.out.println("Pos " + "\tTeam\t" + "\t" + "P" + "\t" + "W" + "\t" + "L" + "\t" + "D"
+        + "\t" + "B" + "\t" + "A" + "\t" + "Pts");
+    System.out
+        .println("____________________________________________________________________________");
     for (Team t : listTeam) {
-      System.out.println(t.getRank() + "\t" + t.getTeamName() + "\t" + t.getNumberGamePlayeds()
-          + "\t" + t.getNumberGameWons() + "\t" + t.getNumberGameLosts() + "\t"
-          + t.getNumberOfByes() + "\t" + t.getPointsScoreFor() + "\t" + t.getPointsScoreAgainst()
-          + "\t" + t.getTotalPoints());
+      System.out.println(" " + t.getRank() + "\t" + t.getTeamName() + "\t\t"
+          + t.getNumberGamePlayeds() + "\t" + t.getNumberGameWons() + "\t" + t.getNumberGameLosts()
+          + "\t" + t.getNumberOfByes() + "\t" + t.getPointsScoreFor() + "\t"
+          + t.getPointsScoreAgainst() + "\t" + t.getTotalPoints());
+      System.out
+          .println("___________________________________________________________________________");
     }
   }
-
-
-
 }
