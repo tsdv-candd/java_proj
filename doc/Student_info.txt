@@ -1,7 +1,6 @@
 Student info
 --------------------------------------------------------------------------------
 "Student id: 18219249"
-"Student name: Mohsen Mirhashemi"
 "Class: PT parramatta Campus"
 "Tutor: Indra (thursdays 12:00-14:00)"
 -------------------------------------------------------------------------------
