@@ -189,7 +189,9 @@ public class Team_18219249 implements Comparable<Team_18219249> {
         }
       }
     }
+    System.out.println();
     System.out.println("Total competition poins after " + currentRound + " rounds: " + totalPoints);
+    System.out.println();
   }
 
 

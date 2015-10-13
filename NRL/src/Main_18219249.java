@@ -1,5 +1,8 @@
 /*
- * Student ID: 18219249 Name: Mohsen Mirhashemi Campus: PT parramatta Campus Tutor Name: Indra Class
+ * Student ID: 18219249 
+ * Name: Mohsen Mirhashemi 
+ * Campus: PT parramatta Campus 
+ * Tutor Name: Indra Class
  * Day: Thursdays Class Time: 12:00-14:00
  */
 
@@ -448,11 +451,6 @@ public class Main_18219249 {
 
   public static void displayTeamResults(int currentRound) {
     String teamName;
-    String leftAlignFormat = " %-2d\t%-10s\t%-20s\t%-6s%n";
-    System.out.println();
-    System.out.println(" Pos\tTeam\t\t\tP\tW\tL\tD\tB\tF\tA\tPts");
-    System.out
-        .format("____________________________________________________________________________________________%n");
     int position;
     do {
       System.out.println("Please enter name of the Team you want to see: ");
@@ -465,8 +463,10 @@ public class Main_18219249 {
       System.out.println("Match Result for rounds 1");
     } else {
       System.out.println("Match Results for rounds 1 to " + currentRound);
+      System.out.println("Round\tDate\t\t\tTeam Played\t\tW/L/D\t\tScore");
+      System.out.format("_______________________________________________________________________________%n");
     }
-
+    
     listTeam[position].showResult(currentRound, listRound);
   }
 

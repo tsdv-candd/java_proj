@@ -1,10 +1,10 @@
 /*
- * Student ID:  18219249
- * Name:        Mohsen Mirhashemi
- * Campus:      PT parramatta Campus
- * Tutor Name:  Indra 
- * Class Day:   Thursdays
- * Class Time:  12:00-14:00
+ * Student ID: 18219249 
+ * Name: Mohsen Mirhashemi 
+ * Campus: PT parramatta Campus 
+ * Tutor Name: Indra Class
+ * Day: Thursdays 
+ * Class Time: 12:00-14:00
  */
 
 import java.text.DateFormat;
@@ -22,8 +22,8 @@ public class Fixture_18219249 {
   private int homeTeamScore;
   private int awayTeamScore;
 
-  public Fixture_18219249(int matchNumber, int roundNumber, String homeName, String awayName, String Venue,
-      Date kickoffTime, Date date) {
+  public Fixture_18219249(int matchNumber, int roundNumber, String homeName, String awayName,
+      String Venue, Date kickoffTime, Date date) {
     this.matchNumber = matchNumber;
     this.roundNumber = roundNumber;
     this.homeTeamName = homeName;
@@ -107,6 +107,8 @@ public class Fixture_18219249 {
   }
 
   public void display(boolean isHomeTeam) {
+    String leftAlignFormat = " %-2d\t%-20s\t%-20s\t%-10s\t%-4d-%-4d%n";
+    // System.out.println();
     final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
     String date = df2.format(this.getMatchDate());
     if (isHomeTeam) {
@@ -116,8 +118,10 @@ public class Fixture_18219249 {
       } else {
         status = "Loss";
       }
-      System.out.println(roundNumber + "\t" + date + "\t" + awayTeamName + "\t" + status + "\t"
-          + homeTeamScore + "-" + awayTeamScore);
+      // System.out.println(roundNumber + "\t" + date + "\t" + awayTeamName + "\t" + status + "\t"
+      // + homeTeamScore + "-" + awayTeamScore);
+      System.out.format(leftAlignFormat, roundNumber, date, awayTeamName, status, homeTeamScore,
+          awayTeamScore);
     } else {
       String status;
       if (homeTeamScore > awayTeamScore) {
@@ -125,10 +129,10 @@ public class Fixture_18219249 {
       } else {
         status = "Win";
       }
-      System.out.println(roundNumber + "\t" + date + "\t" + homeTeamName + "\t" + status + "\t"
-          + homeTeamScore + "-" + awayTeamScore);
+      //System.out.println(roundNumber + "\t" + date + "\t" + homeTeamName + "\t" + status + "\t"
+      //    + homeTeamScore + "-" + awayTeamScore);
+      System.out.format(leftAlignFormat, roundNumber, date, awayTeamName, status, homeTeamScore,
+          awayTeamScore);
     }
-
   }
-
 }
