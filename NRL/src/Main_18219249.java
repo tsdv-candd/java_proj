@@ -136,21 +136,26 @@ public class Main_18219249 {
       Scanner input = new Scanner(new FileInputStream(f));
       int i = 0;
       while (input.hasNextLine()) {
+        if (i >= LIST_TEAMS_SIZE) {
+          System.out.println("File input error, this file has more blank lines!");
+          System.exit(1);
+        }
         String line = input.nextLine();
-        Scanner scanner = new Scanner(line);
-        scanner.useDelimiter(",");
-        if (scanner.hasNext()) {
-          String name = scanner.next();
-          String mascot = scanner.next();
-          String home = scanner.next();
-          listTeam[i] = new Team_18219249(name, mascot, home);
+        if (line.trim() != "") {
+          String teams[] = line.split(",");
+          if (teams.length == 3) {
+            String name = teams[0].toString();
+            String mascot = teams[1].toString();
+            String home = teams[2].toString();
+            listTeam[i] = new Team_18219249(name, mascot, home);
+          } else {
+            System.out.println("The Team input file error! File format invalid");
+            System.exit(1);
+          }
         }
         i++;
       }
-      if (i != LIST_TEAMS_SIZE) {
-        System.out.println("File input error. Systems are going down ...");
-        System.exit(1);
-      }
+
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
@@ -165,22 +170,31 @@ public class Main_18219249 {
       Scanner input = new Scanner(new FileInputStream(f));
       while (input.hasNextLine()) {
         String line = input.nextLine();
-        if (line.trim() != "") {
-          String matchs[] = line.split(",");
-          final DateFormat df1 = new SimpleDateFormat("HH:mm");
-          final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
-          int roundNumber = Integer.parseInt(matchs[0]);
-          int matchNumber = Integer.parseInt(matchs[1]);
-          String homeTeamName = matchs[2].toString();
-          String awayTeamName = matchs[3].toString();
-          String venue = matchs[4].toString();
-          String kickoff = matchs[5].toString();
-          Date kickoffTime = df1.parse(kickoff);
-          String date = matchs[6].toString();
-          Date matchDate = df2.parse(date);
-
-          listFixture[i] = new Fixture_18219249(matchNumber, roundNumber, homeTeamName,
-              awayTeamName, venue, kickoffTime, matchDate);
+        if (line.length() != 0) {
+          if (line.trim() != "") {
+            String matchs[] = line.split(",");
+            if (matchs.length == 7) {
+              final DateFormat df1 = new SimpleDateFormat("HH:mm");
+              final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+              int roundNumber = Integer.parseInt(matchs[0]);
+              int matchNumber = Integer.parseInt(matchs[1]);
+              String homeTeamName = matchs[2].toString();
+              String awayTeamName = matchs[3].toString();
+              String venue = matchs[4].toString();
+              String kickoff = matchs[5].toString();
+              Date kickoffTime = df1.parse(kickoff);
+              String date = matchs[6].toString();
+              Date matchDate = df2.parse(date);
+              listFixture[i] = new Fixture_18219249(matchNumber, roundNumber, homeTeamName,
+                  awayTeamName, venue, kickoffTime, matchDate);
+            } else {
+              System.out.println("The Fixture input file error! File format invalid");
+              System.exit(1);
+            }
+          }
+        } else {
+          System.out.println("The Fixture input file error.This file have blank lines!!");
+          System.exit(1);
         }
         i++;
       }
@@ -197,14 +211,25 @@ public class Main_18219249 {
       Scanner input = new Scanner(new FileInputStream(f));
       int i = 0;
       while (input.hasNextLine()) {
+        if (i >= MATCHS_PER_ROUND_MAX) {
+          System.out.println(
+              "File Round" + roundNumber + ".txt is error. File has more lines than normal");
+          System.exit(1);
+        }
         String line = input.nextLine();
         if (line.trim() != "") {
           String lines[] = line.split(",");
-          int matchNumber = Integer.parseInt(lines[0]);
-          int score1 = Integer.parseInt(lines[1]);
-          int score2 = Integer.parseInt(lines[2]);
-          listRound[roundNumber - 1][i].setHomeTeamScore(score1);
-          listRound[roundNumber - 1][i].setAwayTeamScore(score2);
+          if (lines.length == 3) {
+            int matchNumber = Integer.parseInt(lines[0]);
+            int score1 = Integer.parseInt(lines[1]);
+            int score2 = Integer.parseInt(lines[2]);
+            listRound[roundNumber - 1][i].setHomeTeamScore(score1);
+            listRound[roundNumber - 1][i].setAwayTeamScore(score2);
+          } else {
+            System.out.println(
+                "File Round" + roundNumber + ".txt is error. The format of file  invalids");
+            System.exit(1);
+          }
         }
         i++;
       }
@@ -354,6 +379,14 @@ public class Main_18219249 {
 
 
 
+  public static void displayTeamNames() {
+    for (int i = 0; i < LIST_TEAMS_SIZE; i++) {
+      System.out.println("[" + (i + 1) + "]" + listTeam[i].getTeamName());
+    }
+  }
+
+
+
   public static int testName(String teamName) {
     for (int i = 0; i < LIST_TEAMS_SIZE; i++) {
       if (teamName.equals(listTeam[i].getTeamName())) {
@@ -470,12 +503,5 @@ public class Main_18219249 {
 
     listTeam[position].showResult(currentRound, listRound);
   }
-
-  public static void displayTeamNames() {
-    for (int i = 0; i < LIST_TEAMS_SIZE; i++) {
-      System.out.println("[" + (i + 1) + "]" + listTeam[i].getTeamName());
-    }
-  }
-
 
 }
