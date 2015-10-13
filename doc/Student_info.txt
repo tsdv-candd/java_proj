@@ -1,0 +1,18 @@
+Student info
+--------------------------------------------------------------------------------
+"Student id: 18219249"
+"Student name: Mohsen Mirhashemi"
+"Class: PT parramatta Campus"
+"Tutor: Indra (thursdays 12:00-14:00)"
+-------------------------------------------------------------------------------
+Regulation:
+~~~~~~~~~~
+For the problem definition described in section B you must
+d) include your student id at the end of all filenames for all java code file. Two classes have been identified in
+section B as being required as part of your solution. Do not modify the names of these classes except for
+adding your student id to the end of the filename. Other Java files will be needed as part of your solution. 
+AllJava code files that are used in this project MUST have your student id appended to the filename. For example
+Team_########.java;
+e) include your authorship details at the top of each file in code comments (see item 3.1 in Section C of this
+document for details);
+
