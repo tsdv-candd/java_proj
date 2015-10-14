@@ -102,7 +102,7 @@ public class Main_18219249 {
           System.out.println("Program exited");
           break;
         default:
-          System.out.println("Please enter the choice between 1 and 4");
+          System.out.println("Please enter the choice between 1 and 5");
           break;
       }
     } while (choices != 5);
@@ -136,26 +136,34 @@ public class Main_18219249 {
       Scanner input = new Scanner(new FileInputStream(f));
       int i = 0;
       while (input.hasNextLine()) {
-        if (i >= LIST_TEAMS_SIZE) {
-          System.out.println("File input error, this file has more blank lines!");
-          System.exit(1);
-        }
+
         String line = input.nextLine();
-        if (line.trim() != "") {
-          String teams[] = line.split(",");
-          if (teams.length == 3) {
-            String name = teams[0].toString();
-            String mascot = teams[1].toString();
-            String home = teams[2].toString();
-            listTeam[i] = new Team_18219249(name, mascot, home);
-          } else {
-            System.out.println("The Team input file error! File format invalid");
+        if (line.length() != 0) {
+          if (i == LIST_TEAMS_SIZE) {
+            System.out.println("File Team input error. This file have more teams than normal!");
             System.exit(1);
           }
+          if (line.trim() != "") {
+            String teams[] = line.split(",");
+            if (teams.length == 3) {
+              String name = teams[0].toString();
+              String mascot = teams[1].toString();
+              String home = teams[2].toString();
+              listTeam[i] = new Team_18219249(name, mascot, home);
+              i++;
+            } else {
+              System.out.println("The Team input file error! File format invalid");
+              System.exit(1);
+            }
+          }
+        } else {
+          continue;
         }
-        i++;
       }
-
+      if(i < 16 ){
+        System.out.println("File Team input error. This file have less teams than normal");
+        System.exit(1);
+      }
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
@@ -169,8 +177,13 @@ public class Main_18219249 {
       File f = new File("Resources/Fixtures.txt");
       Scanner input = new Scanner(new FileInputStream(f));
       while (input.hasNextLine()) {
+        
         String line = input.nextLine();
         if (line.length() != 0) {
+          if (i == MATCHS_MAX) {
+            System.out.println("File Fixture input error. This file have more matchs than normal!");
+            System.exit(1);
+          }
           if (line.trim() != "") {
             String matchs[] = line.split(",");
             if (matchs.length == 7) {
@@ -187,16 +200,15 @@ public class Main_18219249 {
               Date matchDate = df2.parse(date);
               listFixture[i] = new Fixture_18219249(matchNumber, roundNumber, homeTeamName,
                   awayTeamName, venue, kickoffTime, matchDate);
+              i++;
             } else {
               System.out.println("The Fixture input file error! File format invalid");
               System.exit(1);
             }
           }
         } else {
-          System.out.println("The Fixture input file error.This file have blank lines!!");
-          System.exit(1);
-        }
-        i++;
+          continue;
+        }      
       }
     } catch (FileNotFoundException e) {
       e.printStackTrace();
@@ -211,27 +223,32 @@ public class Main_18219249 {
       Scanner input = new Scanner(new FileInputStream(f));
       int i = 0;
       while (input.hasNextLine()) {
-        if (i >= MATCHS_PER_ROUND_MAX) {
-          System.out.println(
-              "File Round" + roundNumber + ".txt is error. File has more lines than normal");
-          System.exit(1);
-        }
+       
         String line = input.nextLine();
-        if (line.trim() != "") {
-          String lines[] = line.split(",");
-          if (lines.length == 3) {
-            int matchNumber = Integer.parseInt(lines[0]);
-            int score1 = Integer.parseInt(lines[1]);
-            int score2 = Integer.parseInt(lines[2]);
-            listRound[roundNumber - 1][i].setHomeTeamScore(score1);
-            listRound[roundNumber - 1][i].setAwayTeamScore(score2);
-          } else {
+        if (line.length() != 0) {
+          if (i == MATCHS_PER_ROUND_MAX) {
             System.out.println(
-                "File Round" + roundNumber + ".txt is error. The format of file  invalids");
+                "File Round" + roundNumber + ".txt is error. File has more lines than normal");
             System.exit(1);
           }
+          if (line.trim() != "") {
+            String lines[] = line.split(",");
+            if (lines.length == 3) {
+              int matchNumber = Integer.parseInt(lines[0]);
+              int score1 = Integer.parseInt(lines[1]);
+              int score2 = Integer.parseInt(lines[2]);
+              listRound[roundNumber - 1][i].setHomeTeamScore(score1);
+              listRound[roundNumber - 1][i].setAwayTeamScore(score2);
+              i++;
+            } else {
+              System.out.println(
+                  "File Round" + roundNumber + ".txt is error. The format of file  invalids");
+              System.exit(1);
+            }           
+          }
+        } else {
+          continue;
         }
-        i++;
       }
 
     } catch (FileNotFoundException e) {
