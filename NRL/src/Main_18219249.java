@@ -1,8 +1,3 @@
-/*
- * Student ID: 18219249 Name: Mohsen Mirhashemi Campus: PT parramatta Campus Tutor Name: Indra Class
- * Day: Thursdays Class Time: 12:00-14:00
- */
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -527,7 +522,7 @@ public class Main_18219249 {
             System.out.print("Please enter the round you want [1-26]: ");
             Scanner in1 = new Scanner(System.in);
             roundNumber = in1.nextInt();
-          } while (roundNumber < 1 || roundNumber > LIST_TEAMS_SIZE);
+          } while (roundNumber < 1 || roundNumber > ROUNDS_MAX);
           showOneRound(roundNumber);
           break;
         default:

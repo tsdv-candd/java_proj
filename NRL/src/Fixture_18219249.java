@@ -3,8 +3,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /*
- * Student ID: 18219249 Name: Mohsen Mirhashemi Campus: PT parramatta Campus Tutor Name: Indra Class
- * Day: Thursdays Class Time: 12:00-14:00
+ * Student ID: 18219249 
+ * Name: Mohsen Mirhashemi 
+ * Campus: PT parramatta Campus 
+ * Tutor Name: Indra 
+ * Class Day: Thursdays Class 
+ * Time: 12:00-14:00
  */
 public class Fixture_18219249 {
   private int matchNumber;
