@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 /**
- * @author Mason
- * 
+ * @author hj
+ *
  */
 public class Main_18219249 {
   /**
@@ -35,7 +35,12 @@ public class Main_18219249 {
   private static int[] list;
   private static Fixture_18219249[][] listRound;
 
-
+	/*******************************************************************************
+	 * @method name: main
+	 * @brief : Main processing of the NRL program.
+	 * @param : String[] argas input parameter from users.
+	 * @retval None.
+	 *****************************************************************************/
   public static void main(String[] argas) throws IOException, ParseException, InterruptedException {
 
     int currentRound;
@@ -49,7 +54,6 @@ public class Main_18219249 {
     numberOfMatchs = readFixture();
     loadToRound(numberOfMatchs);
 
-
     do {
       Scanner scan = new Scanner(System.in);
       System.out.print("The current round now:   ");
@@ -60,7 +64,12 @@ public class Main_18219249 {
     mainFunctions(currentRound);
   }
 
-
+	/*******************************************************************************
+	 * @method name: startupProcess
+	 * @brief : Main processing of the NRL program.
+	 * @param : String[] argas input parameter from users.
+	 * @retval None.
+	 *****************************************************************************/
   public static void startupProcess(int currentRound) {
     setList(currentRound);
     for (int i = 1; i <= currentRound; i++) {
@@ -109,7 +118,12 @@ public class Main_18219249 {
     System.exit(0);
   }
 
-
+	/*******************************************************************************
+	 * @method name: showMain
+	 * @brief : Showing main menu of user interaction.
+	 * @param : None
+	 * @retval None.
+	 *****************************************************************************/
   public static void showMain() {
     System.out.println("------------------------Main menu------------------------\n");
     System.out.println("[1]. Display Match Schedule                          \n");
