@@ -176,21 +176,7 @@ public class Team_18219249 implements Comparable<Team_18219249> {
 		} else {
 			return (totalPoints - otherTeam.totalPoints);
 		}
-	}
-
-	/*******************************************************************************
-	 * @method name: updateRank
-	 * @brief : Update ranking for all team
-	 * @param : Team_18219249[] t reference to the team list
-	 * @retval None.
-	 *****************************************************************************/
-	public void updateRank(Team_18219249[] t) {
-		int i = 0;
-		while (!teamName.equals(t[i].getTeamName())) {
-			i++;
-		}
-		this.setRank(i + 1);
-	}
+	}	
 
 	/*******************************************************************************
 	 * @method name: showResult
