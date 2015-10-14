@@ -436,21 +436,34 @@ public class Main_18219249 {
     int score1, score2;
     int numberOfMatchs = getNumberMatchesOfRound(roundNumber);
     int matchNumber = listRound[roundNumber - 1][0].getMatchNumber();
+    String leftAlignFormat = "%-10s\t%-20s\t%-20s\t%-20s\t%-15s%n";
     Scanner scan = new Scanner(System.in);
     for (int i = 0; i < numberOfMatchs; i++, matchNumber++) {
-      System.out.println("The Match number  " + matchNumber + " between "
-          + listRound[roundNumber - 1][i].getHomeTeamName() + " - "
-          + listRound[roundNumber - 1][i].getAwayTeamName());
-      System.out
-          .print("Enter the score for " + listRound[roundNumber - 1][i].getHomeTeamName() + " :");
-      score1 = scan.nextInt();
-      System.out
-          .print("Enter the score for " + listRound[roundNumber - 1][i].getAwayTeamName() + " :");
-      score2 = scan.nextInt();
-      roundResult[i] = (matchNumber) + "," + score1 + "," + score2;
+        final DateFormat df1 = new SimpleDateFormat("HH:mm");
+        final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+        String date = df2.format(listRound[roundNumber - 1][i]
+                .getMatchDate());
+        String time = df1.format(listRound[roundNumber - 1][i]
+                .getKickoffTime());
+        System.out.format(leftAlignFormat, "Date", "Home Team", "Away Team",
+                "Venue", "Kick off time");
+        System.out
+                .format("______________________________________________________________________________________________________%n");
+        System.out.format(leftAlignFormat, date,
+                listRound[roundNumber - 1][i].getHomeTeamName(),
+                listRound[roundNumber - 1][i].getAwayTeamName(),
+                listRound[roundNumber - 1][i].getMatchVenue(), time);
+        System.out.print("Enter the score for \""
+                + listRound[roundNumber - 1][i].getHomeTeamName() + "\" :");
+        score1 = scan.nextInt();
+        System.out.print("Enter the score for \""
+                + listRound[roundNumber - 1][i].getAwayTeamName() + "\" :");
+        score2 = scan.nextInt();
+        System.out.println();
+        roundResult[i] = (matchNumber) + "," + score1 + "," + score2;
     }
     return roundResult;
-  }
+}
 
   /*******************************************************************************
    * @method name: setList.
@@ -614,8 +627,8 @@ public class Main_18219249 {
       System.out.format(
           "_______________________________________________________________________________%n");
     }
-
-    listTeam[position].showResult(currentRound, listRound);
+   
+    listTeam[position].showResult(currentRound,list, listRound);
   }
 
 }
