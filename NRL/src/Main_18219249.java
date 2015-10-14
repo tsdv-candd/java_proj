@@ -58,7 +58,7 @@ public class Main_18219249 {
       Scanner scan = new Scanner(System.in);
       System.out.print("The current round now:   ");
       currentRound = scan.nextInt();
-    } while (currentRound < 1 || currentRound > LIST_TEAMS_SIZE);
+    } while (currentRound < 1 || currentRound > ROUNDS_MAX);
 
     startupProcess(currentRound);
     mainFunctions(currentRound);
@@ -174,7 +174,7 @@ public class Main_18219249 {
           continue;
         }
       }
-      if(i < 16 ){
+      if(i < LIST_TEAMS_SIZE ){
         System.out.println("File Team input error. This file have less teams than normal");
         System.exit(1);
       }
