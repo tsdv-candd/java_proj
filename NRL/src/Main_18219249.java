@@ -543,33 +543,6 @@ private static int currentRound;
       System.out.println("It is the last round of the competition!");
       return;
     } else {
-//  
-//      for (int i = list[0] + 1; i <= currentRound; i++) {
-//        if (list[i] == 0) {
-//          list[0] = i;
-//          File file = new File("Resources/Round" + i + ".txt");
-//          showOneRound(currentRound);
-//          System.out.println("");
-//          content = getRoundResults(i);
-//          try {
-//            BufferedWriter fw = new BufferedWriter(new FileWriter(file));
-//            for (int k = 0; k < getNumberMatchesOfRound(i) - 1; k++) {
-//              fw.write(content[k]);
-//              fw.newLine();
-//            }
-//            fw.write(content[getNumberMatchesOfRound(i) - 1]);
-//            fw.close();
-//            System.out.println("Write to Round" + i + ".txt successful!");
-//          } catch (IOException e) {
-//            e.printStackTrace();
-//          }
-//          readRoundFiles(file, i);
-//          updateToTeam(i);
-//          updateRankListTeam();
-//          return;
-//        }
-//      }
-
       list[0] = currentRound;
       if(currentRound < ROUNDS_MAX )
       {
