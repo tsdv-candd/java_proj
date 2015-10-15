@@ -30,6 +30,7 @@ public class Main_18219249 {
   private static Fixture_18219249[] listFixture;
   private static int[] list;
   private static Fixture_18219249[][] listRound;
+private static int currentRound;
 
   /*******************************************************************************
    * @method name: main.
@@ -38,7 +39,7 @@ public class Main_18219249 {
    * @retval : None.
    *****************************************************************************/
   public static void main(String[] argas) throws IOException, ParseException, InterruptedException {
-    int currentRound;
+    //int currentRound;
     int numberOfMatches;
     listTeam = new Team_18219249[LIST_TEAMS_SIZE];
     listFixture = new Fixture_18219249[MATCHES_MAX];
@@ -55,7 +56,7 @@ public class Main_18219249 {
       currentRound = scan.nextInt();
     } while (currentRound < 1 || currentRound > ROUNDS_MAX);
 
-    startupProcess(currentRound);
+    startupProcess();
     mainFunctions(currentRound);
   }
 
@@ -65,9 +66,10 @@ public class Main_18219249 {
    * @param : int currentRound show the current round of competition.
    * @retval : None.
    *****************************************************************************/
-  public static void startupProcess(int currentRound) {
+  public static void startupProcess() {
     setList(currentRound);
-    for (int i = 1; i <= currentRound; i++) {
+    int i = 1;
+    for (i = 1; i <= currentRound; i++) {
       String fileName = "Resources/Round" + i + ".txt";
       File file = new File(fileName);
       if (file.exists()) {
@@ -75,10 +77,13 @@ public class Main_18219249 {
         readRoundFiles(file, i);
         updateToTeam(i);
         updateRankListTeam();
+        //currentRound = i;
       } else {
-        System.out.println("File: Round" + i + " not loaded.");
+           System.out.println("File: Round" + i + " not loaded.");
+           break;
       }
     }
+    currentRound = i - 1;
     System.out.println("Please update it by select menu 2!");
     System.out.println();
   }
@@ -101,7 +106,7 @@ public class Main_18219249 {
           displayMatchSchedule();
           break;
         case 2:
-          enterRoundResults(currentRound);
+          enterRoundResults();
           break;
         case 3:
           displayLadder();
@@ -532,59 +537,64 @@ public class Main_18219249 {
    * @param : int currentRound is the number current round of this competition.
    * @retval : None.
    *****************************************************************************/
-  public static void enterRoundResults(int currentRound) throws IOException {
+  public static void enterRoundResults() throws IOException {
     String[] content = new String[MATCHES_PER_ROUND_MAX];
     if (list[0] == ROUNDS_MAX) {
       System.out.println("It is the last round of the competition!");
       return;
     } else {
-      for (int i = list[0] + 1; i <= currentRound; i++) {
-        if (list[i] == 0) {
-          list[0] = i;
-          File file = new File("Resources/Round" + i + ".txt");
-          showOneRound(i);
-          System.out.println("");
-          content = getRoundResults(i);
-          try {
-            BufferedWriter fw = new BufferedWriter(new FileWriter(file));
-            for (int k = 0; k < getNumberMatchesOfRound(i) - 1; k++) {
-              fw.write(content[k]);
-              fw.newLine();
-            }
-            fw.write(content[getNumberMatchesOfRound(i) - 1]);
-            fw.close();
-            System.out.println("Write to Round" + i + ".txt successful!");
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
-          readRoundFiles(file, i);
-          updateToTeam(i);
-          updateRankListTeam();
-          return;
-        }
-      }
+//  
+//      for (int i = list[0] + 1; i <= currentRound; i++) {
+//        if (list[i] == 0) {
+//          list[0] = i;
+//          File file = new File("Resources/Round" + i + ".txt");
+//          showOneRound(currentRound);
+//          System.out.println("");
+//          content = getRoundResults(i);
+//          try {
+//            BufferedWriter fw = new BufferedWriter(new FileWriter(file));
+//            for (int k = 0; k < getNumberMatchesOfRound(i) - 1; k++) {
+//              fw.write(content[k]);
+//              fw.newLine();
+//            }
+//            fw.write(content[getNumberMatchesOfRound(i) - 1]);
+//            fw.close();
+//            System.out.println("Write to Round" + i + ".txt successful!");
+//          } catch (IOException e) {
+//            e.printStackTrace();
+//          }
+//          readRoundFiles(file, i);
+//          updateToTeam(i);
+//          updateRankListTeam();
+//          return;
+//        }
+//      }
 
       list[0] = currentRound;
-      currentRound += 1;
-      File file = new File("Resources/Round" + currentRound + ".txt");
-      showOneRound(currentRound);
-      System.out.println("");
-      content = getRoundResults(currentRound);
-      try {
-        BufferedWriter fw = new BufferedWriter(new FileWriter(file));
-        for (int k = 0; k < getNumberMatchesOfRound(currentRound) - 1; k++) {
-          fw.write(content[k]);
-          fw.newLine();
-        }
-        fw.write(content[getNumberMatchesOfRound(currentRound) - 1]);
-        fw.close();
-        System.out.println("Write to Round" + currentRound + ".txt successful!");
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-      readRoundFiles(file, currentRound);
-      updateToTeam(currentRound);
-      updateRankListTeam();
+      if(currentRound < ROUNDS_MAX )
+      {
+    	  currentRound += 1;
+     
+	      File file = new File("Resources/Round" + currentRound + ".txt");
+	      showOneRound(currentRound);
+	      System.out.println("");
+	      content = getRoundResults(currentRound);
+	      try {
+	        BufferedWriter fw = new BufferedWriter(new FileWriter(file));
+	        for (int k = 0; k < getNumberMatchesOfRound(currentRound) - 1; k++) {
+	          fw.write(content[k]);
+	          fw.newLine();
+	        }
+	        fw.write(content[getNumberMatchesOfRound(currentRound) - 1]);
+	        fw.close();
+	        System.out.println("Write to Round" + currentRound + ".txt successful!");
+	      } catch (IOException e) {
+	        e.printStackTrace();
+	      }
+	      readRoundFiles(file, currentRound);
+	      updateToTeam(currentRound);
+	      updateRankListTeam();
+	  }
     }
   }
 
