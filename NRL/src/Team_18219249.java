@@ -1,10 +1,6 @@
 /*
- * Student ID: 18219249 
- * Name: Mohsen Mirhashemi 
- * Campus: PT parramatta Campus 
- * Tutor Name: Indra Class
- * Day: Thursdays Class 
- * Time: 12:00-14:00
+ * Student ID: 18219249 Name: Mohsen Mirhashemi Campus: PT parramatta Campus Tutor Name: Indra Class
+ * Day: Thursdays Class Time: 12:00-14:00
  */
 public class Team_18219249 implements Comparable<Team_18219249> {
 
@@ -178,30 +174,19 @@ public class Team_18219249 implements Comparable<Team_18219249> {
   /*******************************************************************************
    * @method name: showResult
    * @brief : Show team result until the current round.
-   * @param : int currentRound Current round number which user input at startup
-   * @param : int[] list is the list of flags to check round is loaded or not
+   * @param : int currentRound Current round number which user input at startup   
    * @retval None.
    *****************************************************************************/
-  public void showResult(int currentRound, int[] list, Fixture_18219249[][] fx) {   
+  public void showResult(int currentRound, Fixture_18219249[][] fx) {
     for (int i = 0; i < currentRound; i++) {
       for (int j = 0; j < 8; j++) {
         if (fx[i][j] != null) {
-          if (list[i + 1] == 1) {
-            if (teamName.equals(fx[i][j].getHomeTeamName())) {
-              fx[i][j].display(true, true);
-            }
-            if (teamName.equals(fx[i][j].getAwayTeamName())) {
-              fx[i][j].display(true, false);
-            }
-          }else{
-            if (teamName.equals(fx[i][j].getHomeTeamName())) {
-              fx[i][j].display(false, true);
-            }
-            if (teamName.equals(fx[i][j].getAwayTeamName())) {
-              fx[i][j].display(false, false);
-            }
+          if (teamName.equals(fx[i][j].getHomeTeamName())) {
+            fx[i][j].display(true);
           }
-
+          if (teamName.equals(fx[i][j].getAwayTeamName())) {
+            fx[i][j].display(false);
+          }
         } else {
           continue;
         }

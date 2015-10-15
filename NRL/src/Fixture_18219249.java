@@ -107,16 +107,14 @@ public class Fixture_18219249 {
   /*******************************************************************************
    * @method name: display
    * @brief : Display team result. (Main process for the menu No.4)
-   * @param : boolean isHomeTeam for checking the match at the home team or not.
-   * @param : boolean checkRound for checking the result of this round is loaded or not
+   * @param : boolean isHomeTeam for checking the match at the home team or not.   * 
    * @retval : None
    *****************************************************************************/
-  public void display(boolean checkRound, boolean isHomeTeam) {
+  public void display(boolean isHomeTeam) {
     String leftAlignFormat = " %-2d\t%-20s\t%-20s\t%-10s\t%02d-%02d%n";
     final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
     String date = df2.format(this.getMatchDate());
-    String status;
-    if (checkRound) {
+    String status;    
       if (isHomeTeam) {
         if (homeTeamScore > awayTeamScore) {
           status = "Win";
@@ -137,14 +135,6 @@ public class Fixture_18219249 {
         }
         System.out.format(leftAlignFormat, roundNumber, date, homeTeamName, status, homeTeamScore,
             awayTeamScore);
-      }
-    } else {
-      status = "Not updated";
-      if (isHomeTeam) {
-        System.out.format(leftAlignFormat, roundNumber, date, awayTeamName, status, null,null);
-      } else {
-        System.out.format(leftAlignFormat, roundNumber, date, homeTeamName, status, null,null);
-      }
-    }
+      }  
   }
 }
