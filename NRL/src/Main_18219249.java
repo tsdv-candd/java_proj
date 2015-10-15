@@ -78,7 +78,11 @@ public class Main_18219249 {
       } else {
         temp = currentRound;
         currentRound = i - 1;
-        System.out.println("Rounds " + (currentRound + 1) + " to " + temp + " not loaded.");
+        if (currentRound == 0) {
+          System.out.println("No round result is loaded.");
+        } else {
+          System.out.println("Rounds " + (currentRound + 1) + " to " + temp + " not loaded.");
+        }
         System.out.println("You can update them by select menu 2.");
         System.out.println();
         return;
@@ -585,7 +589,6 @@ public class Main_18219249 {
   public static void displayTeamResults() {
     String teamName;
     int position;
-    System.out.println("The value of currentRound in displayTeamResult is: " + currentRound);
     System.out.println("The list name of teams is below:");
     displayTeamNames();
     do {
@@ -597,12 +600,14 @@ public class Main_18219249 {
     System.out.println(listTeam[position].getTeamName() + " " + listTeam[position].getHomeGround());
     if (currentRound == 1) {
       System.out.println("Match Result for rounds 1");
+    } else if (currentRound == 0) {
+      System.out.println("Round result is not updated.");
     } else {
       System.out.println("Match Results for rounds 1 to " + currentRound);
-      System.out.println("Round\tDate\t\t\tTeam Played\t\tW/L/D\t\tScore");
-      System.out.format(
-          "_______________________________________________________________________________%n");
     }
+    System.out.println("Round\tDate\t\t\tTeam Played\t\tW/L/D\t\tScore");
+    System.out.format(
+        "_______________________________________________________________________________%n");
 
     listTeam[position].showResult(currentRound, listRound);
   }

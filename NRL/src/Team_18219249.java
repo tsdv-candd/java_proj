@@ -159,7 +159,7 @@ public class Team_18219249 implements Comparable<Team_18219249> {
       int temp2 = otherTeam.pointsScoreFor - otherTeam.pointsScoreAgainst;
       if (temp1 == temp2) {
         if (pointsScoreFor == otherTeam.pointsScoreFor) {
-          return teamName.compareToIgnoreCase(otherTeam.teamName);
+          return otherTeam.getTeamName().compareToIgnoreCase(this.teamName);
         } else {
           return (pointsScoreFor - otherTeam.pointsScoreFor);
         }
