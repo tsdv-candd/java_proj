@@ -1,0 +1,47 @@
+Q.1 -> [Page2/7] -> [Menu 2], 
+when user select "2. Enter Round Result", 
+the program need to allow user input the round number that user want to input result
+Or
+The program will automatically allow user to Enter round result from the round which Round#.txt does not existed?
+--------------------------------------------------------------------------------
+A.1
+----
+
+Q1: user is to Enter the round result from the round which Round#.txt does not exist – but not all of them. 
+Menu option 2 is to enter the results for 1 round only not multiple rounds.
+
+Some examples:
+
+At program start up the user enters 5 as the current round.
+
+If the user chooses menu option 4 now then the current round is 5.
+
+If the user chooses menu option 2 they will then enter the results for round 6 (the next round). 
+After entering the results the current round is now 6.
+
+If the user chooses menu option 2 they will then enter the results for round 7 (the next round). 
+After entering the results the current round is now 7.
+At program start up the user enters 15 as the current round.
+
+If the user chooses menu option 4 now then the current round is 13 since only the first 13 round files could be loaded.
+
+If the user chooses menu option 2 they will then enter the results for round 14 (the next round). 
+After entering the results the current round is now 14.
+
+If the user chooses menu option 2 they will then enter the results for round 15 (the next round). 
+After entering the results the current round is now 15.
+----
+
+Q2.
+~~
+Suppose that system already have the round result until round No.13.
+But when startup, user select current Round No. is 8 for example (8<13).
+In that case, program will process normally (display menu, allow user to select a menu from 1~5)
+Or.
+Program will notify that "the current round is 13 but not 8" and stop, until user input correct current round Number?
+Please confirm and answer soon because we plan to completed all abnormal case as soon as possible.
+--------------------------------------------------------------------------------
+A2.
+~~
+I think this is answered in the first example above. (Refer to A1)
+
