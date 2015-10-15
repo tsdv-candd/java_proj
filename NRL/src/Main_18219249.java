@@ -11,12 +11,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 /**
- * Student ID: 18219249
- * Name: Mohsen Mirhashemi
- * Campus: PT parramatta Campus
- * Tutor Name: Indra Class
- * Day: Thursdays Class
- * Time: 12:00-14:00
+ * Student ID: 18219249 Name: Mohsen Mirhashemi Campus: PT parramatta Campus Tutor Name: Indra Class
+ * Day: Thursdays Class Time: 12:00-14:00
  */
 public class Main_18219249 {
   /**
@@ -35,19 +31,19 @@ public class Main_18219249 {
   private static int[] list;
   private static Fixture_18219249[][] listRound;
 
-	/*******************************************************************************
-	 * @method name: main.
-	 * @brief : Main processing of the NRL program.
-	 * @param : String[] argas input parameter from users.
-	 * @retval : None.
-	 *****************************************************************************/
+  /*******************************************************************************
+   * @method name: main.
+   * @brief : Main processing of the NRL program.
+   * @param : String[] argas input parameter from users.
+   * @retval : None.
+   *****************************************************************************/
   public static void main(String[] argas) throws IOException, ParseException, InterruptedException {
     int currentRound;
     int numberOfMatches;
     listTeam = new Team_18219249[LIST_TEAMS_SIZE];
     listFixture = new Fixture_18219249[MATCHES_MAX];
     listRound = new Fixture_18219249[ROUNDS_MAX][MATCHES_PER_ROUND_MAX];
-    list = new int[ROUNDS_MAX];
+    list = new int[ROUNDS_MAX + 1];
 
     readTeamFile();
     numberOfMatches = readFixtureFile();
@@ -63,28 +59,28 @@ public class Main_18219249 {
     mainFunctions(currentRound);
   }
 
-	/*******************************************************************************
-	 * @method name: startupProcess.
-	 * @brief : Main processing of the NRL program.
-	 * @param : int currentRound show the current round of competition.
-	 * @retval : None.
-	 *****************************************************************************/
+  /*******************************************************************************
+   * @method name: startupProcess.
+   * @brief : Main processing of the NRL program.
+   * @param : int currentRound show the current round of competition.
+   * @retval : None.
+   *****************************************************************************/
   public static void startupProcess(int currentRound) {
     setList(currentRound);
     for (int i = 1; i <= currentRound; i++) {
       String fileName = "Resources/Round" + i + ".txt";
       File file = new File(fileName);
       if (file.exists()) {
-        list[i - 1] = 1;
+        list[i] = 1;
         readRoundFiles(file, i);
         updateToTeam(i);
         updateRankListTeam();
       } else {
         System.out.println("File: Round" + i + " not loaded.");
-        System.out.println("Please update it by select menu 2!");
-        System.out.println();
       }
     }
+    System.out.println("Please update it by select menu 2!");
+    System.out.println();
   }
 
   /*******************************************************************************
@@ -124,12 +120,12 @@ public class Main_18219249 {
     System.exit(0);
   }
 
-	/*******************************************************************************
-	 * @method name: showMain.
-	 * @brief : Showing main menu of user interaction.
-	 * @param : None.
-	 * @retval : None.
-	 *****************************************************************************/
+  /*******************************************************************************
+   * @method name: showMain.
+   * @brief : Showing main menu of user interaction.
+   * @param : None.
+   * @retval : None.
+   *****************************************************************************/
   public static void showMain() {
     System.out.println("------------------------Main menu------------------------\n");
     System.out.println("[1]. Display Match Schedule                          \n");
@@ -188,7 +184,7 @@ public class Main_18219249 {
           continue;
         }
       }
-      if(i < LIST_TEAMS_SIZE ){
+      if (i < LIST_TEAMS_SIZE) {
         System.out.println("File Team input error. This file have less teams than normal");
         System.exit(1);
       }
@@ -209,7 +205,7 @@ public class Main_18219249 {
       File f = new File("Resources/Fixtures.txt");
       Scanner input = new Scanner(new FileInputStream(f));
       while (input.hasNextLine()) {
-        
+
         String line = input.nextLine();
         if (line.length() != 0) {
           if (i == MATCHES_MAX) {
@@ -240,7 +236,7 @@ public class Main_18219249 {
           }
         } else {
           continue;
-        }      
+        }
       }
     } catch (FileNotFoundException e) {
       e.printStackTrace();
@@ -261,7 +257,7 @@ public class Main_18219249 {
       Scanner input = new Scanner(new FileInputStream(f));
       int i = 0;
       while (input.hasNextLine()) {
-       
+
         String line = input.nextLine();
         if (line.length() != 0) {
           if (i == MATCHES_PER_ROUND_MAX) {
@@ -282,7 +278,7 @@ public class Main_18219249 {
               System.out.println(
                   "File Round" + roundNumber + ".txt is error. The format of file  invalids");
               System.exit(1);
-            }           
+            }
           }
         } else {
           continue;
@@ -298,7 +294,7 @@ public class Main_18219249 {
    * @brief : Get the number of matches in this round.
    * @param : int roundNumber show the number of round.
    * @retval : Return the number of matches in this round.
-   *****************************************************************************/  
+   *****************************************************************************/
   public static int getNumberMatchesOfRound(int roundNumber) {
     int numberMatches = 0;
     for (int i = 0; i < MATCHES_PER_ROUND_MAX; i++) {
@@ -314,7 +310,7 @@ public class Main_18219249 {
    * @brief : Updating results from round file to team objects.
    * @param : int roundNumber show the number of round.
    * @retval : None.
-   *****************************************************************************/  
+   *****************************************************************************/
   public static void updateToTeam(int roundNumber) {
     int numberOfMatches = getNumberMatchesOfRound(roundNumber);
     for (int i = 0; i < LIST_TEAMS_SIZE; i++) {
@@ -342,7 +338,7 @@ public class Main_18219249 {
    * @brief : Load all the matches to listRound[][].
    * @param : int numberOfMatches is the number of all matches in competition.
    * @retval : None.
-   *****************************************************************************/  
+   *****************************************************************************/
   public static void loadToRound(int numberOfMatches) {
     int i = 0;
     listRound[listFixture[0].getRoundNumber() - 1][i] = listFixture[0];
@@ -363,7 +359,7 @@ public class Main_18219249 {
    * @brief : Showing the schedule for all rounds.
    * @param : None.
    * @retval : None.
-   *****************************************************************************/    
+   *****************************************************************************/
   public static void showAllRounds() {
     for (int i = 0; i < ROUNDS_MAX; i++) {
       showOneRound(i + 1);
@@ -375,7 +371,7 @@ public class Main_18219249 {
    * @brief : Showing the schedule for a particular round.
    * @param : int roundNumber is the number of this round.
    * @retval : None.
-   *****************************************************************************/    
+   *****************************************************************************/
   public static void showOneRound(int roundNumber) {
     System.out.println("ROUND " + roundNumber + " Matches ");
     String leftAlignFormat = "%-10s\t%-20s\t%-20s\t%-20s\t%-15s%n";
@@ -404,7 +400,7 @@ public class Main_18219249 {
    * @brief : Update rank of all Team in listTeam[].
    * @param : None.
    * @retval : None.
-   *****************************************************************************/   
+   *****************************************************************************/
   public static void updateRankListTeam() {
     for (int i = 0; i < LIST_TEAMS_SIZE; i++) {
       for (int j = LIST_TEAMS_SIZE - 1; j > 0; j--) {
@@ -425,7 +421,7 @@ public class Main_18219249 {
    * @brief : Get the result of a particular round from user input.
    * @param : int roundNumber is the number of this round.
    * @retval : Return a array of matches result in this round.
-   *****************************************************************************/   
+   *****************************************************************************/
   public static String[] getRoundResults(int roundNumber) {
     String[] roundResult = new String[MATCHES_PER_ROUND_MAX];
     int score1, score2;
@@ -434,40 +430,37 @@ public class Main_18219249 {
     String leftAlignFormat = "%-10s\t%-20s\t%-20s\t%-20s\t%-15s%n";
     Scanner scan = new Scanner(System.in);
     for (int i = 0; i < numberOfMatchs; i++, matchNumber++) {
-        final DateFormat df1 = new SimpleDateFormat("HH:mm");
-        final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
-        String date = df2.format(listRound[roundNumber - 1][i]
-                .getMatchDate());
-        String time = df1.format(listRound[roundNumber - 1][i]
-                .getKickoffTime());
-        System.out.format(leftAlignFormat, "Date", "Home Team", "Away Team",
-                "Venue", "Kick off time");
-        System.out
-                .format("______________________________________________________________________________________________________%n");
-        System.out.format(leftAlignFormat, date,
-                listRound[roundNumber - 1][i].getHomeTeamName(),
-                listRound[roundNumber - 1][i].getAwayTeamName(),
-                listRound[roundNumber - 1][i].getMatchVenue(), time);
-        System.out.print("Enter the score for \""
-                + listRound[roundNumber - 1][i].getHomeTeamName() + "\" :");
-        score1 = scan.nextInt();
-        System.out.print("Enter the score for \""
-                + listRound[roundNumber - 1][i].getAwayTeamName() + "\" :");
-        score2 = scan.nextInt();
-        System.out.println();
-        roundResult[i] = (matchNumber) + "," + score1 + "," + score2;
+      final DateFormat df1 = new SimpleDateFormat("HH:mm");
+      final DateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+      String date = df2.format(listRound[roundNumber - 1][i].getMatchDate());
+      String time = df1.format(listRound[roundNumber - 1][i].getKickoffTime());
+      System.out.format(leftAlignFormat, "Date", "Home Team", "Away Team", "Venue",
+          "Kick off time");
+      System.out.format(
+          "______________________________________________________________________________________________________%n");
+      System.out.format(leftAlignFormat, date, listRound[roundNumber - 1][i].getHomeTeamName(),
+          listRound[roundNumber - 1][i].getAwayTeamName(),
+          listRound[roundNumber - 1][i].getMatchVenue(), time);
+      System.out.print(
+          "Enter the score for \"" + listRound[roundNumber - 1][i].getHomeTeamName() + "\" :");
+      score1 = scan.nextInt();
+      System.out.print(
+          "Enter the score for \"" + listRound[roundNumber - 1][i].getAwayTeamName() + "\" :");
+      score2 = scan.nextInt();
+      System.out.println();
+      roundResult[i] = (matchNumber) + "," + score1 + "," + score2;
     }
     return roundResult;
-}
+  }
 
   /*******************************************************************************
    * @method name: setList.
    * @brief : Set value of all the elements in list[] to 0.
    * @param : int currentRound is the number current round of this competition.
    * @retval : None.
-   *****************************************************************************/    
+   *****************************************************************************/
   public static void setList(int currentRound) {
-    for (int i = 0; i < ROUNDS_MAX; i++) {
+    for (int i = 0; i <= ROUNDS_MAX; i++) {
       list[i] = 0;
     }
   }
@@ -477,7 +470,7 @@ public class Main_18219249 {
    * @brief : Display name of all teams for user select.
    * @param : None.
    * @retval : None.
-   *****************************************************************************/   
+   *****************************************************************************/
   public static void displayTeamNames() {
     for (int i = 0; i < LIST_TEAMS_SIZE; i++) {
       System.out.println("[" + (i + 1) + "]" + listTeam[i].getTeamName());
@@ -504,7 +497,7 @@ public class Main_18219249 {
    * @brief : Display the match schedule.
    * @param : None.
    * @retval : None.
-   *****************************************************************************/      
+   *****************************************************************************/
   public static void displayMatchSchedule() throws InterruptedException {
     int choices;
     do {
@@ -538,35 +531,60 @@ public class Main_18219249 {
    * @brief : Process the results of round when user input.
    * @param : int currentRound is the number current round of this competition.
    * @retval : None.
-   *****************************************************************************/    
+   *****************************************************************************/
   public static void enterRoundResults(int currentRound) throws IOException {
     String[] content = new String[MATCHES_PER_ROUND_MAX];
-    int flag = 0;
-    for (int i = 0; i < currentRound; i++) {
-      if (list[i] == 0) {
-        flag = 1;
-        File file = new File("Resources/Round" + (i + 1) + ".txt");
-        showOneRound(i + 1);
-        System.out.println("");
-        content = getRoundResults(i + 1);
-        try {
-          BufferedWriter fw = new BufferedWriter(new FileWriter(file));
-          for (int k = 0; k < getNumberMatchesOfRound(i + 1) - 1; k++) {
-            fw.write(content[k]);
-            fw.newLine();
+    if (list[0] == ROUNDS_MAX) {
+      System.out.println("It is the last round of the competition!");
+      return;
+    } else {
+      for (int i = list[0] + 1; i <= currentRound; i++) {
+        if (list[i] == 0) {
+          list[0] = i;
+          File file = new File("Resources/Round" + i + ".txt");
+          showOneRound(i);
+          System.out.println("");
+          content = getRoundResults(i);
+          try {
+            BufferedWriter fw = new BufferedWriter(new FileWriter(file));
+            for (int k = 0; k < getNumberMatchesOfRound(i) - 1; k++) {
+              fw.write(content[k]);
+              fw.newLine();
+            }
+            fw.write(content[getNumberMatchesOfRound(i) - 1]);
+            fw.close();
+            System.out.println("Write to Round" + i + ".txt successful!");
+          } catch (IOException e) {
+            e.printStackTrace();
           }
-          fw.write(content[getNumberMatchesOfRound(i + 1) - 1]);
-          fw.close();
-        } catch (IOException e) {
-          e.printStackTrace();
+          readRoundFiles(file, i);
+          updateToTeam(i);
+          updateRankListTeam();
+          return;
         }
-        readRoundFiles(file, i + 1);
-        updateToTeam(i + 1);
-        updateRankListTeam();
       }
-    }
-    if (flag == 0) {
-      System.out.println("All round's results are up to date and loaded! \n");
+
+      list[0] = currentRound;
+      currentRound += 1;
+      File file = new File("Resources/Round" + currentRound + ".txt");
+      showOneRound(currentRound);
+      System.out.println("");
+      content = getRoundResults(currentRound);
+      try {
+        BufferedWriter fw = new BufferedWriter(new FileWriter(file));
+        for (int k = 0; k < getNumberMatchesOfRound(currentRound) - 1; k++) {
+          fw.write(content[k]);
+          fw.newLine();
+        }
+        fw.write(content[getNumberMatchesOfRound(currentRound) - 1]);
+        fw.close();
+        System.out.println("Write to Round" + currentRound + ".txt successful!");
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      readRoundFiles(file, currentRound);
+      updateToTeam(currentRound);
+      updateRankListTeam();
     }
   }
 
@@ -575,7 +593,7 @@ public class Main_18219249 {
    * @brief : Display the ladder.
    * @param : None.
    * @retval : None.
-   *****************************************************************************/    
+   *****************************************************************************/
   public static void displayLadder() {
     String leftAlignFormat = " %-4d\t%-20s\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d\t%-4d%n";
     System.out.println();
@@ -601,7 +619,7 @@ public class Main_18219249 {
    * @brief : Display the the result of one team from round 1 to current round.
    * @param : int currentRound is the number current round of this competition.
    * @retval : None.
-   *****************************************************************************/    
+   *****************************************************************************/
   public static void displayTeamResults(int currentRound) {
     String teamName;
     int position;
@@ -622,8 +640,8 @@ public class Main_18219249 {
       System.out.format(
           "_______________________________________________________________________________%n");
     }
-   
-    listTeam[position].showResult(currentRound,list, listRound);
+
+    listTeam[position].showResult(currentRound, list, listRound);
   }
 
 }

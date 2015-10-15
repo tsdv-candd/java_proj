@@ -186,7 +186,7 @@ public class Team_18219249 implements Comparable<Team_18219249> {
     for (int i = 0; i < currentRound; i++) {
       for (int j = 0; j < 8; j++) {
         if (fx[i][j] != null) {
-          if (list[i] == 1) {
+          if (list[i + 1] == 1) {
             if (teamName.equals(fx[i][j].getHomeTeamName())) {
               fx[i][j].display(true, true);
             }
